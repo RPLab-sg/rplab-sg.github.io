@@ -1,0 +1,96 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10);
+  padding-block: var(--space-18) var(--space-12);
+}
+.heading {
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 28px;
+  text-align: center;
+  padding-inline: var(--page-gutter);
+}
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 96px;
+  overflow: hidden;
+}
+.viewport::before,
+.viewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 160px;
+  pointer-events: none;
+}
+.viewport::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--md-sys-color-surface), transparent);
+}
+.viewport::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--md-sys-color-surface), transparent);
+}
+.track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  /* The animated track is its own compositing group, so give multiply a surface to blend into. */
+  background: var(--md-sys-color-surface);
+  animation: marquee 40s linear infinite;
+}
+.viewport:hover .track {
+  animation-play-state: paused;
+}
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  padding-right: var(--space-24);
+}
+.list img {
+  height: auto;
+  max-height: 64px;
+  opacity: 0.75;
+  mix-blend-mode: multiply;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+  .viewport {
+    overflow-x: auto;
+  }
+}
+@media (max-width: 720px) {
+  .heading {
+    line-height: 36px;
+  }
+  .viewport::before,
+  .viewport::after {
+    width: 48px;
+  }
+  .list {
+    gap: var(--space-12);
+    padding-right: var(--space-12);
+  }
+  .list img {
+    transform: scale(0.75);
+  }
+}

@@ -1,0 +1,6 @@
+.pending {
+  cursor: default;
+}
+.pending:hover {
+  text-decoration: none;
+}

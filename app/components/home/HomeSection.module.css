@@ -1,0 +1,24 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  padding-block: var(--space-6) var(--space-30);
+}
+.section > :not(.heading) {
+  align-self: stretch;
+}
+.heading {
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 36px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .section {
+    gap: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+}

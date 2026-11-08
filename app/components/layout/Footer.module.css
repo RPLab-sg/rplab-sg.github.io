@@ -1,0 +1,37 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  min-height: 112px;
+  padding-block: 22px 45px;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  font-family: var(--font-en);
+  color: var(--md-sys-color-on-surface);
+}
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+  line-height: 24px;
+}
+.identity address {
+  font-size: 12px;
+  font-style: normal;
+  line-height: 18px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.footer small {
+  font-size: 12px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: var(--space-6) var(--space-10);
+  }
+}

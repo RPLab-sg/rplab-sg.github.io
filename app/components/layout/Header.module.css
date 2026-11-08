@@ -1,0 +1,134 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(250 248 255 / 92%);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+}
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  min-height: var(--header-height);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+}
+.brand:hover {
+  text-decoration: none;
+}
+.wordmark {
+  display: flex;
+  flex-direction: column;
+}
+.wordmark strong {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.wordmark small {
+  margin-top: 1px;
+  font-family: 'IBM Plex Sans', var(--font-en);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.end {
+  display: flex;
+  align-items: center;
+}
+.nav ul {
+  display: flex;
+  gap: var(--space-1);
+}
+.divider {
+  width: 1px;
+  height: 16px;
+  margin-left: var(--space-1);
+  background: var(--md-sys-color-outline-variant);
+}
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: var(--space-5);
+  font-family: var(--font-en);
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+}
+.langLink,
+.langActive {
+  text-decoration: none;
+}
+.langLink {
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 0.7;
+}
+.langLink:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+.langActive {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 500;
+}
+.shortLabel {
+  display: none;
+}
+.slash {
+  color: var(--md-sys-color-outline-variant);
+}
+
+@media (max-width: 900px) {
+  .inner {
+    position: relative;
+    flex-wrap: wrap;
+    row-gap: 0;
+    padding-top: var(--space-2);
+  }
+  .end {
+    width: 100%;
+    justify-content: space-between;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .end::-webkit-scrollbar {
+    display: none;
+  }
+  .divider {
+    display: none;
+  }
+  .lang {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    padding-left: 0;
+  }
+  .nav ul {
+    gap: 0;
+    --tab-padding: var(--space-3);
+  }
+  .fullLabel {
+    display: none;
+  }
+  .shortLabel {
+    display: inline;
+  }
+}
+@media (max-width: 420px) {
+  .nav ul {
+    --tab-padding: 7px;
+  }
+  .nav a {
+    font-size: 13px;
+  }
+}

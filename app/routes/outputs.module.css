@@ -1,0 +1,117 @@
+.feature {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-6);
+  align-items: center;
+}
+.featureImage {
+  grid-column: 1 / span 5;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--shape-xs);
+  box-shadow: var(--shadow-image);
+}
+.featureText {
+  grid-column: 7 / span 6;
+  display: flex;
+  flex-direction: column;
+}
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--md-sys-color-primary);
+}
+.featureTitle {
+  margin-top: var(--space-3);
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 36px;
+}
+.featureDescription {
+  margin-top: var(--space-4);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.more {
+  margin-top: var(--space-6);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: calc(var(--space-6) * -1);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 120px 160px 1fr auto;
+  align-items: center;
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+.year {
+  font-family: var(--font-en);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.type {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  color: var(--md-sys-color-primary);
+}
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.rowTitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+.rowSub {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.arrow {
+  font-size: 18px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.empty {
+  padding-block: var(--space-6);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+@media (max-width: 900px) {
+  .feature {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-6);
+  }
+  .featureImage,
+  .featureText {
+    grid-column: 1 / -1;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+  .arrow {
+    display: none;
+  }
+}

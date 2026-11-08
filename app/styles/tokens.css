@@ -1,0 +1,48 @@
+:root {
+  --md-sys-color-primary: #485e92;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-fixed: #dae2ff;
+  --md-sys-color-primary-fixed-dim: #b0c6ff;
+  --md-sys-color-on-primary-fixed-variant: #152e60;
+  --md-sys-color-surface: #faf8ff;
+  --md-sys-color-surface-container-low: #f4f3fa;
+  --md-sys-color-on-surface: #1a1b21;
+  --md-sys-color-on-surface-variant: #44464f;
+  --md-sys-color-outline-variant: #c5c6d0;
+  --hero-title-color: #e2e2e9;
+
+  --shape-xs: 4px;
+  --shape-sm: 8px;
+  --shape-full: 9999px;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-18: 72px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  --content-width: 1280px;
+  --page-gutter: clamp(16px, 5.5vw, 80px);
+  --header-height: 64px;
+
+  --font-ko: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --font-en: 'Roboto', 'Noto Sans KR', system-ui, sans-serif;
+  --font-display: 'Manrope', 'Roboto', system-ui, sans-serif;
+  --font-body: var(--font-ko);
+
+  --shadow-image: 0 1px 3px rgb(23 26 51 / 6%), 0 12px 32px -8px rgb(23 26 51 / 8%);
+}
+
+html[lang='en'] {
+  --font-body: var(--font-en);
+}

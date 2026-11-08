@@ -1,0 +1,35 @@
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 var(--tab-padding, var(--space-4));
+  border: 0;
+  background: none;
+  color: var(--md-sys-color-on-surface-variant);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+.tab:hover {
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+}
+.active {
+  color: var(--md-sys-color-on-surface);
+}
+.active::after {
+  content: '';
+  position: absolute;
+  left: var(--tab-padding, var(--space-4));
+  right: var(--tab-padding, var(--space-4));
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--md-sys-color-primary);
+}

@@ -1,0 +1,30 @@
+import type { Output } from './types';
+
+export const outputs: Output[] = [
+  {
+    id: 'fsta-edu-sdk',
+    slug: 'fsta-edu-sdk',
+    status: 'published',
+    // TODO: 실제 분류와 연도 확인 필요 (현재 임시로 산학 협력)
+    type: 'collaboration',
+    title: { ko: 'FSTA Edu SDK', en: 'FSTA Edu SDK' },
+    subtitle: { ko: '교육용 레이더 SDK 소프트웨어', en: 'Educational radar SDK software' },
+    tag: {
+      ko: '레이더 교육 · 산학 협력',
+      en: 'Radar Education · Industry Collaboration',
+    },
+    shortTag: { ko: 'Radar · Education', en: 'Radar · Education' },
+    description: {
+      ko: '레이더 신호처리를 직접 익히고 응용을 만들어 볼 수 있는 교육용 레이더 SDK 소프트웨어입니다.',
+      en: 'Educational radar SDK software for learning radar signal processing and building applications hands-on.',
+    },
+    featured: true,
+    image: {
+      src: '/images/projects/fsta-edu-sdk.jpg',
+      alt: {
+        ko: 'FSTA Edu SDK 화면: 레이더로 추적한 사람의 위치와 자세를 3D와 평면도로 표시',
+        en: 'FSTA Edu SDK showing people tracked by radar in 3D and floor-plan views',
+      },
+    },
+  },
+];
