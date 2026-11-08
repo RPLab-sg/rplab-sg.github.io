@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-현재 Node.js 26.13.0과 npm 11을 기준으로 설정했습니다. 
+현재 Node.js 26.13.0과 npm 11을 기준으로 설정했습니다.
 
 ## 명령
 
@@ -68,9 +68,8 @@ npm run dev
 
 `react-router.config.ts`에서 `ssr: false`와 사전 렌더링을 사용합니다. 모든 페이지와 소식 상세 페이지를 두 언어로 빌드 시 HTML로 생성하며, 결과는 `build/client/`에 있습니다. 운영용 Node.js 서버는 필요하지 않습니다.
 
-
 ## 의존성
 
-의존성 버전과 `package-lock.json`을 함께 관리하고, CI와 새 환경에서는 `npm ci`를 사용합니다. 
+의존성 버전과 `package-lock.json`을 함께 관리하고, CI와 새 환경에서는 `npm ci`를 사용합니다.
 
-개발 도구의 간접 의존성인 minimatch는 [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249) 수정 버전인 11.0.5로 고정했습니다. 
+개발 도구의 간접 의존성인 minimatch는 [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249) 수정 버전인 11.0.5로 고정했습니다.
