@@ -71,6 +71,9 @@ export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; local
           </li>
         ))}
       </ul>
+      <p className={styles.moreLink}>
+        <LocalizedLink to="/outputs">{ui('viewAllOutputs', locale)}</LocalizedLink>
+      </p>
     </HomeSection>
   );
 }

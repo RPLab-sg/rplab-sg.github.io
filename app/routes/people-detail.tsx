@@ -25,7 +25,7 @@ const sectionTitles: Record<'research' | 'experience' | 'education' | 'activitie
   research: { ko: '연구 분야', en: 'Research' },
   experience: { ko: '경력', en: 'Experience' },
   education: { ko: '학력', en: 'Education' },
-  activities: { ko: '대외활동', en: 'Activities' },
+  activities: { ko: '활동', en: 'Activities' },
 };
 
 function Section({

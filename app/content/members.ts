@@ -39,18 +39,16 @@ export const members: Member[] = [
       {
         kind: 'department',
         label: { ko: '학과 프로필 ↗', en: 'Department profile ↗' },
-        // 연결할 때: href: 'https://scc.sogang.ac.kr/cs/cs02_1_28.html'
+        href: 'https://computing.sogang.ac.kr/ko/education/undergraduate/faculty/MjAyNjA4MjcxNzUxMTc1NTU?dept=computer-science',
         external: true,
       },
       {
         kind: 'tech-transfer',
         label: { ko: '기술이전 프로필 ↗', en: 'Tech transfer profile ↗' },
-        // 연결할 때: href: 'https://www.sogangtech.com/researcher/2342'
+        href: 'https://www.sogangtech.com/researcher/2342',
         external: true,
       },
     ],
-    // 출처: 서강대학교 기술이전 플랫폼 연구자 정보 (sogangtech.com/researcher/2342)
-    // TODO: 영문 표기(기관·직위)는 확인이 필요합니다.
     detail: {
       summary: {
         ko: 'AI 기반 차세대 수술로봇 시스템을 연구합니다. 무릎 뼈 수술 부위의 형상과 대퇴골·경골 사이 간격을 자동으로 측정해 수술 설계에 실시간으로 반영하고, AI로 수술 설계를 자동화해 짧은 시간에 안전하게 뼈를 절삭하는 차세대 무릎인공관절 수술 로봇 시스템을 개발합니다.',
@@ -237,7 +235,6 @@ export const members: Member[] = [
     role: 'undergraduate',
     order: 10,
     status: 'published',
-    // TODO: 영문 이름 표기 확인 필요
     name: { ko: '지현종', en: 'Hyunjong Ji' },
     position: { ko: '학부연구생', en: 'Undergraduate Researcher' },
     education: {

@@ -25,7 +25,7 @@ export function Hero({ locale }: { locale: Locale }) {
           Department of Computer Science and Engineering <br />
           at Sogang University, Seoul, South Korea
         </p>
-        <div className={styles.action}>
+        <div className={styles.action} lang="en">
           <PillButton to="#join" variant="tonal">
             {ui('joinTitle', locale)}
           </PillButton>

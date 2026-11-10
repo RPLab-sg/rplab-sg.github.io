@@ -54,6 +54,7 @@
 
 .action {
   margin-top: var(--space-8);
+  font-family: var(--font-en);
 }
 
 @media (max-width: 720px) {

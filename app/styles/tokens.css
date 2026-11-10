@@ -35,9 +35,11 @@
   --page-gutter: clamp(16px, 5.5vw, 80px);
   --header-height: 64px;
 
-  --font-ko: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
-  --font-en: 'Roboto', 'Noto Sans KR', system-ui, sans-serif;
-  --font-display: 'Manrope', 'Roboto', system-ui, sans-serif;
+  --font-ko:
+    'Google Sans Flex', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui,
+    sans-serif;
+  --font-en: 'Google Sans Flex', 'Noto Sans KR', system-ui, sans-serif;
+  --font-display: 'Manrope', 'Google Sans Flex', system-ui, sans-serif;
   --font-body: var(--font-ko);
 
   --shadow-image: 0 1px 3px rgb(23 26 51 / 6%), 0 12px 32px -8px rgb(23 26 51 / 8%);
