@@ -24,7 +24,7 @@ export function links() {
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' as const },
     {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&family=Manrope:wght@600&family=Noto+Sans+KR:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&family=Manrope:wght@600&family=Noto+Sans+KR:wght@300;400;500&family=Google+Sans+Flex:wght@100..900&display=swap',
     },
   ];
 }

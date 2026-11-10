@@ -6,8 +6,8 @@ export const researchAxes: ResearchAxis[] = [
     order: 1,
     title: 'Robotics',
     summary: {
-      ko: '웨어러블 로봇을 중심으로\n로봇의 구조와 움직임을 탐구합니다.',
-      en: 'Exploring the structure and motion of robots,\nwith a focus on wearable robotics.',
+      ko: '로봇과 AI의 접목을 연구합니다.\n',
+      en: 'Exploring the structure and motion of robots,\nwith a focus on Physical AI',
     },
     keywords: {
       ko: ['웨어러블 로봇', 'AI 기반 수술로봇', '산업 로봇·AI 응용'],

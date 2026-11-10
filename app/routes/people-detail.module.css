@@ -1,7 +1,6 @@
 .page {
   display: flex;
   flex-direction: column;
-  max-width: 1120px;
   padding-block: 56px var(--space-30);
 }
 .back {
@@ -54,7 +53,7 @@
   color: var(--md-sys-color-on-surface-variant);
 }
 .summary {
-  max-width: 680px;
+  max-width: 880px;
   font-size: 18px;
   line-height: 32px;
 }

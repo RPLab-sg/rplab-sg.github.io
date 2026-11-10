@@ -11,6 +11,7 @@ const strings = {
   latestNews: { ko: 'Latest News & Research', en: 'Latest News & Research' },
   awardsCaption: { ko: '공모전·경진대회 대상', en: 'Grand Prizes in competitions' },
   viewAllNews: { ko: '전체 소식 보기 →', en: 'View all news →' },
+  viewAllOutputs: { ko: '전체 성과 보기 →', en: 'View all outputs →' },
   researchDetail: { ko: '연구 자세히 보기 →', en: 'See in detail →' },
   joinTitle: { ko: 'Join RPLab', en: 'Join RPLab' },
   joinBody: {
