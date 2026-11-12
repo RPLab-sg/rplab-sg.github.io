@@ -1,20 +1,34 @@
 /** Pages read content only through these functions, so a database can replace the files later. */
-import { prune } from '@/content/prune';
+import { memberSchema, newsSchema, outputSchema, parseEntry } from '@/content/schema';
 import { partners } from '@/content/partners';
 import { researchAxes } from '@/content/research';
 import type { Member, NewsItem, Output, Partner, ResearchAxis } from '@/content/types';
 
-/** Members, news and outputs are one JSON file per entry, edited through Pages CMS (`.pages.yml`). */
-const entries = <T>(files: Record<string, unknown>): T[] =>
-  Object.values(files).map((file) => prune(file) as T);
+/**
+ * Members, news and outputs are one JSON file per entry, edited through Pages CMS (`.pages.yml`).
+ * An entry that fails validation is skipped with a warning so one bad edit can't take a page down;
+ * `npm run check` fails on it, so CI never deploys it.
+ */
+function entries<T>(files: Record<string, unknown>, schema: Parameters<typeof parseEntry>[0]): T[] {
+  return Object.entries(files).flatMap(([path, raw]) => {
+    const result = parseEntry<T>(schema, raw);
+    if (result.ok) return [result.data];
+    console.warn(`[content] skipped ${path}\n${result.message}`);
+    return [];
+  });
+}
+
 const members = entries<Member>(
   import.meta.glob('../content/members/*.json', { eager: true, import: 'default' }),
+  memberSchema,
 );
 const news = entries<NewsItem>(
   import.meta.glob('../content/news/*.json', { eager: true, import: 'default' }),
+  newsSchema,
 );
 const outputs = entries<Output>(
   import.meta.glob('../content/outputs/*.json', { eager: true, import: 'default' }),
+  outputSchema,
 );
 
 const byPublishedDesc = (a: NewsItem, b: NewsItem) => b.publishedAt.localeCompare(a.publishedAt);

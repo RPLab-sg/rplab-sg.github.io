@@ -9,6 +9,13 @@ x-localized-line: &localized-line
 x-localized-text: &localized-text
   - { name: ko, label: 한국어, type: text }
   - { name: en, label: English, type: text }
+# Required text: Korean must be filled; empty English falls back to Korean on the English site.
+x-required-line: &required-line
+  - { name: ko, label: 한국어 (필수), type: string, required: true }
+  - { name: en, label: English (비우면 한국어 표시), type: string }
+x-required-text: &required-text
+  - { name: ko, label: 한국어 (필수), type: text, required: true }
+  - { name: en, label: English (비우면 한국어 표시), type: text }
 x-localized-list: &localized-list
   - { name: ko, label: 한국어, type: string, list: true }
   - { name: en, label: English, type: string, list: true }
@@ -16,14 +23,14 @@ x-localized-paragraphs: &localized-paragraphs
   - { name: ko, label: 한국어 (문단마다 한 칸), type: text, list: true }
   - { name: en, label: English (one per paragraph), type: text, list: true }
 x-image: &image
-  - { name: src, label: 이미지, type: image }
+  - { name: src, label: '이미지 (파일 이름은 영문·숫자·하이픈만, 예 radar-demo.jpg)', type: image }
   - name: alt
     label: 대체 텍스트 (이미지 설명)
     type: object
     fields: *localized-line
 x-timeline: &timeline
-  - { name: period, label: 기간, type: object, fields: *localized-line }
-  - { name: title, label: 내용, type: object, fields: *localized-line }
+  - { name: period, label: 기간, type: object, required: true, fields: *required-line }
+  - { name: title, label: 내용, type: object, required: true, fields: *required-line }
   - { name: note, label: 비고 (선택), type: object, fields: *localized-text }
 x-status: &status
   name: status
@@ -81,8 +88,8 @@ content:
             - { value: alumni, label: 졸업생 (목록에 표시 안 함) }
       - { name: order, label: 표시 순서 (작을수록 앞), type: number, required: true, default: 10 }
       - *status
-      - { name: name, label: 이름, type: object, fields: *localized-line }
-      - { name: position, label: 직위·과정, type: object, fields: *localized-line }
+      - { name: name, label: 이름, type: object, required: true, fields: *required-line }
+      - { name: position, label: 직위·과정, type: object, required: true, fields: *required-line }
       - { name: education, label: 소속 학과 (선택), type: object, fields: *localized-line }
       - { name: photo, label: 사진 (선택), type: object, fields: *image }
       - name: contactSlots
@@ -102,21 +109,21 @@ content:
         list: true
         fields:
           - { name: kind, label: 종류 (아이콘 이름), type: string }
-          - { name: label, label: 버튼 글자, type: object, fields: *localized-line }
+          - { name: label, label: 버튼 글자, type: object, required: true, fields: *required-line }
           - { name: href, label: 주소 (비우면 비활성), type: string }
           - { name: external, label: 외부 사이트, type: boolean, default: true }
       - name: detail
         label: 전체 이력 페이지 (교수만, 비우면 페이지 없음)
         type: object
         fields:
-          - { name: summary, label: 소개, type: object, fields: *localized-text }
+          - { name: summary, label: 소개, type: object, required: true, fields: *required-text }
           - name: research
             label: 연구 분야
             type: object
             list: true
             fields:
-              - { name: title, label: 제목, type: object, fields: *localized-line }
-              - { name: body, label: 설명, type: object, fields: *localized-text }
+              - { name: title, label: 제목, type: object, required: true, fields: *required-line }
+              - { name: body, label: 설명, type: object, required: true, fields: *required-text }
           - { name: experience, label: 경력, type: object, list: true, fields: *timeline }
           - { name: education, label: 학력, type: object, list: true, fields: *timeline }
           - { name: activities, label: 활동, type: object, list: true, fields: *timeline }
@@ -153,9 +160,9 @@ content:
             - { value: research, label: 연구 }
             - { value: event, label: 행사 }
             - { value: notice, label: 공지 }
-      - { name: title, label: 제목, type: object, fields: *localized-line }
+      - { name: title, label: 제목, type: object, required: true, fields: *required-line }
       - { name: detail, label: 부제 (예 상 이름, 선택), type: object, fields: *localized-line }
-      - { name: summary, label: 요약, type: object, fields: *localized-text }
+      - { name: summary, label: 요약, type: object, required: true, fields: *required-text }
       - { name: body, label: 본문, type: object, fields: *localized-paragraphs }
       - { name: cover, label: 대표 이미지 (선택), type: object, fields: *image }
 
@@ -184,11 +191,23 @@ content:
             - { value: paper, label: 논문 }
             - { value: project, label: 프로젝트 }
       - { name: year, label: 연도 (선택), type: number }
-      - { name: title, label: 제목, type: object, fields: *localized-line }
-      - { name: subtitle, label: 부제, type: object, fields: *localized-line }
-      - { name: tag, label: 태그 (성과 페이지), type: object, fields: *localized-line }
-      - { name: shortTag, label: 짧은 태그 (홈 카드), type: object, fields: *localized-line }
-      - { name: description, label: 설명, type: object, fields: *localized-text }
+      - { name: title, label: 제목, type: object, required: true, fields: *required-line }
+      - { name: subtitle, label: 부제, type: object, required: true, fields: *required-line }
+      - {
+          name: tag,
+          label: 태그 (성과 페이지),
+          type: object,
+          required: true,
+          fields: *required-line,
+        }
+      - {
+          name: shortTag,
+          label: 짧은 태그 (홈 카드),
+          type: object,
+          required: true,
+          fields: *required-line,
+        }
+      - { name: description, label: 설명, type: object, required: true, fields: *required-text }
       - { name: featured, label: 홈 Featured Projects에 표시, type: boolean, default: false }
       - { name: featuredOrder, label: 홈 표시 순서 (작을수록 앞, 선택), type: number }
       - { name: image, label: 이미지 (선택), type: object, fields: *image }
