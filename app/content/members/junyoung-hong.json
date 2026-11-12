@@ -5,12 +5,13 @@
     "ko": "홍준영",
     "en": "junyoung hong"
   },
-  "order": 10,
+  "joined": 2026,
   "status": "published",
-  "education": {
-    "ko": "컴퓨터공학과"
-  },
+  "education": "[object Object]",
   "photo": {
     "src": "/images/icon_1024.png"
+  },
+  "contactSlots": {
+    "email": "1104hjy@naver.com"
   }
 }
