@@ -1,8 +1,3 @@
-/**
- * Position shown on each member card, fixed by role so CMS editors only pick the role.
- * Keep free of `@/` imports: the content schema loads this from Node scripts too.
- * The professor line names the current rank; update it here when it changes.
- */
 import type { Localized } from '../i18n/locale';
 import type { MemberRole } from './types';
 

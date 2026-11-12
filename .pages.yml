@@ -1,45 +1,48 @@
-# Pages CMS (https://pagescms.org): web editor for members, news and outputs.
-# Each entry is one JSON file named after its slug. Saving commits to the repo.
-# `npm run check` validates these files (app/content/schema.ts); keep fields in step with it.
-# Derived in code, so not asked here: each entry's id (= slug) and a member's position (from role).
-
-# Reusable field groups (YAML anchors).
 x-localized-line: &localized-line
   - { name: ko, label: 한국어, type: string }
   - { name: en, label: English, type: string }
 x-localized-text: &localized-text
   - { name: ko, label: 한국어, type: text }
   - { name: en, label: English, type: text }
-# Required text: Korean must be filled; empty English falls back to Korean on the English site.
 x-required-line: &required-line
-  - { name: ko, label: 한국어 (필수), type: string, required: true }
-  - { name: en, label: English (비우면 한국어로 표시), type: string }
+  - { name: ko, label: 한국어, type: string, required: true }
+  - {
+      name: en,
+      label: English,
+      type: string,
+      description: 비우면 영문 사이트에 한국어로 표시됩니다.,
+    }
 x-required-text: &required-text
-  - { name: ko, label: 한국어 (필수), type: text, required: true }
-  - { name: en, label: English (비우면 한국어로 표시), type: text }
+  - { name: ko, label: 한국어, type: text, required: true }
+  - { name: en, label: English, type: text, description: 비우면 영문 사이트에 한국어로 표시됩니다. }
 x-localized-list: &localized-list
   - { name: ko, label: 한국어, type: string, list: true }
   - { name: en, label: English, type: string, list: true }
 x-localized-paragraphs: &localized-paragraphs
-  - { name: ko, label: 한국어 (문단마다 한 칸), type: text, list: true }
-  - { name: en, label: English (문단마다 한 칸), type: text, list: true }
+  - { name: ko, label: 한국어, type: text, list: true, description: 문단마다 한 칸씩 추가합니다. }
+  - { name: en, label: English, type: text, list: true, description: 문단마다 한 칸씩 추가합니다. }
 x-image: &image
   - name: src
-    label: 이미지 파일 (파일 이름은 영문 소문자, 숫자, 하이픈만 / 예 radar-demo.jpg)
+    label: 이미지 파일
     type: image
+    required: true
+    description: JPG, PNG, WebP, SVG만 가능합니다.
+    options:
+      extensions: [jpg, jpeg, png, webp, svg]
+      rename: safe
   - name: alt
-    label: 이미지 설명 (화면 낭독기용)
+    label: 이미지 설명
     type: object
+    description: 화면 낭독기와 이미지가 안 보일 때 쓰입니다.
     fields: *localized-line
 x-timeline: &timeline
   - { name: period, label: 기간, type: object, required: true, fields: *required-line }
   - { name: title, label: 내용, type: object, required: true, fields: *required-line }
-  - { name: note, label: 비고 (선택), type: object, fields: *localized-text }
+  - { name: note, label: 비고, type: object, fields: *localized-text }
 x-status: &status
   name: status
   label: 공개 여부
   type: select
-  default: published
   required: true
   options:
     values:
@@ -48,10 +51,19 @@ x-status: &status
 x-slug-pattern: &slug-pattern
   regex: '^[a-z0-9]+(-[a-z0-9]+)*$'
   message: 영문 소문자, 숫자, 하이픈(-)만 쓸 수 있습니다.
+x-link-pattern: &link-pattern
+  regex: '^(https?://|mailto:|tel:|/).+'
+  message: 'https://, mailto:, tel: 또는 /로 시작해야 합니다.'
+x-email-pattern: &email-pattern
+  regex: '^[^@\s]+@[^@\s]+\.[^@\s]+$'
+  message: 이메일 주소 형식이 아닙니다.
 
 media:
   input: public/images
   output: /images
+  categories: [image]
+  extensions: [jpg, jpeg, png, webp, svg]
+  rename: safe
 
 content:
   - name: members
@@ -62,19 +74,21 @@ content:
     filename: '{fields.slug}.json'
     view:
       primary: slug
-      fields: [slug, role, order, status]
-      sort: [order]
-      default: { sort: order, order: asc }
+      fields: [slug, name.ko, role, joined, status]
+      sort: [joined]
+      default: { sort: joined, order: asc }
     fields:
       - name: slug
-        label: 영문 이름 (프로필 주소와 파일 이름에 쓰임 / 예 gildong-hong)
+        label: 영문 이름
         type: string
         required: true
+        description: '프로필 주소와 파일 이름에 쓰입니다. 예: gildong-hong'
         pattern: *slug-pattern
       - name: role
-        label: 구분 (직위와 과정은 구분에 맞춰 자동 표시)
+        label: 구분
         type: select
         required: true
+        description: 카드의 직위와 과정은 구분에 맞춰 자동으로 표시됩니다.
         options:
           values:
             - { value: professor, label: 교수 }
@@ -83,33 +97,82 @@ content:
             - { value: undergraduate, label: 학부연구생 }
             - { value: alumni, label: 졸업생 (목록에 표시 안 함) }
       - { name: name, label: 이름, type: object, required: true, fields: *required-line }
-      - { name: order, label: 같은 구분 안에서 표시 순서 (작을수록 앞), type: number, default: 10 }
+      - name: joined
+        label: 합류 연도
+        type: number
+        description: '예: 2026'
+        options: { min: 1990, max: 2100 }
+      - name: graduated
+        label: 졸업 연도
+        type: number
+        options: { min: 1990, max: 2100 }
       - *status
-      - { name: education, label: 소속 학과 (선택), type: object, fields: *localized-line }
-      - { name: photo, label: 사진 (선택), type: object, fields: *image }
+      - name: school
+        label: 소속 학교
+        type: reference
+        options:
+          collection: schools
+          search: 'fields.name.ko,fields.name.en'
+          value: '{fields.slug}'
+          label: '{fields.name.ko} ({fields.name.en})'
+      - name: education
+        label: 소속 학과
+        type: reference
+        options:
+          collection: departments
+          search: 'fields.name.ko,fields.name.en'
+          value: '{fields.slug}'
+          label: '{fields.name.ko} ({fields.name.en})'
+      - { name: photo, label: 사진, type: object, fields: *image }
       - name: contactSlots
-        label: 학생 카드 연락처 (비우면 아이콘만 표시)
+        label: 학생 카드 연락처
         type: object
+        description:
         fields:
-          - { name: github, label: GitHub 주소 (https://github.com/아이디), type: string }
-          - { name: email, label: 이메일, type: string }
-      - { name: summary, label: '[교수] 소개 요약', type: object, fields: *localized-text }
-      - { name: keywords, label: '[교수] 연구 키워드', type: object, fields: *localized-list }
-      - { name: email, label: '[교수] 이메일', type: string }
+          - name: github
+            label: GitHub 주소
+            type: string
+            description: '예: https://github.com/아이디'
+            pattern:
+              regex: '^https://github\.com/[A-Za-z0-9-]+/?$'
+              message: 'https://github.com/아이디 형식이어야 합니다.'
+          - { name: email, label: 이메일, type: string, pattern: *email-pattern }
+      - name: summary
+        label: '[교수] 소개 요약'
+        type: object
+        fields: *localized-text
+      - name: keywords
+        label: '[교수] 연구 키워드'
+        type: object
+        fields: *localized-list
+      - { name: email, label: '[교수] 이메일', type: string, pattern: *email-pattern }
       - { name: phone, label: '[교수] 전화', type: string }
-      - { name: office, label: '[교수] 연구실 위치', type: object, fields: *localized-line }
+      - name: office
+        label: '[교수] 연구실 위치'
+        type: object
+        fields: *localized-line
       - name: links
         label: '[교수] 링크 버튼'
         type: object
         list: true
         fields:
-          - { name: kind, label: 아이콘 종류, type: string }
+          - name: kind
+            label: 버튼 ID
+            type: string
+            required: true
+            description: '버튼마다 다른 영문 ID. 예: profile, department'
+            pattern: *slug-pattern
           - { name: label, label: 버튼 글자, type: object, required: true, fields: *required-line }
-          - { name: href, label: 링크 주소 (비우면 비활성 표시), type: string }
+          - name: href
+            label: 링크 주소
+            type: string
+            description: 비우면 버튼이 보이지만 눌리지 않습니다.
+            pattern: *link-pattern
           - { name: external, label: 새 사이트로 이동, type: boolean, default: true }
       - name: detail
-        label: '[교수] 전체 이력 페이지 (비우면 페이지 없음)'
+        label: '[교수] 전체 이력 페이지'
         type: object
+        description: 비우면 전체 이력 페이지가 만들어지지 않습니다.
         fields:
           - { name: summary, label: 소개, type: object, required: true, fields: *required-text }
           - name: research
@@ -122,7 +185,7 @@ content:
           - { name: experience, label: 경력, type: object, list: true, fields: *timeline }
           - { name: education, label: 학력, type: object, list: true, fields: *timeline }
           - { name: activities, label: 활동, type: object, list: true, fields: *timeline }
-          - { name: source, label: 출처 표기 (선택), type: object, fields: *localized-line }
+          - { name: source, label: 출처 표기, type: object, fields: *localized-line }
 
   - name: news
     label: 소식
@@ -132,20 +195,22 @@ content:
     filename: '{fields.slug}.json'
     view:
       primary: slug
-      fields: [slug, publishedAt, category, status]
+      fields: [slug, title.ko, publishedAt, category, status]
       default: { sort: publishedAt, order: desc }
     fields:
       - name: slug
-        label: 소식 영문 ID (파일 이름에 쓰임 / 예 2026-radai-grand-prize)
+        label: 소식 영문 ID
         type: string
         required: true
+        description: '파일 이름에 쓰입니다. 예: 2026-radai-grand-prize'
         pattern: *slug-pattern
       - name: publishedAt
-        label: 날짜 (2026-03-26 형식, 날짜를 모르면 연도만 2026)
+        label: 날짜
         type: string
         required: true
+        description: '2026-03-26 형식. 날짜를 모르면 연도만 2026처럼 작성합니다.'
         pattern:
-          regex: '^\d{4}(-\d{2}-\d{2})?$'
+          regex: '^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))?$'
           message: 2026-03-26 또는 2026 형식으로 입력하세요.
       - name: category
         label: 분류
@@ -159,10 +224,14 @@ content:
             - { value: notice, label: 공지 }
       - *status
       - { name: title, label: 제목, type: object, required: true, fields: *required-line }
-      - { name: detail, label: 부제 (예 상 이름 / 선택), type: object, fields: *localized-line }
+      - name: detail
+        label: 부제
+        type: object
+        description: '예: 상 이름'
+        fields: *localized-line
       - { name: summary, label: 요약, type: object, required: true, fields: *required-text }
-      - { name: body, label: 본문 (선택), type: object, fields: *localized-paragraphs }
-      - { name: cover, label: 대표 이미지 (선택), type: object, fields: *image }
+      - { name: body, label: 본문, type: object, fields: *localized-paragraphs }
+      - { name: cover, label: 대표 이미지, type: object, fields: *image }
 
   - name: outputs
     label: 성과
@@ -172,13 +241,14 @@ content:
     filename: '{fields.slug}.json'
     view:
       primary: slug
-      fields: [slug, type, year, featured, status]
+      fields: [slug, title.ko, type, year, featured, status]
       default: { sort: year, order: desc }
     fields:
       - name: slug
-        label: 성과 영문 ID (파일 이름에 쓰임 / 예 fsta-edu-sdk)
+        label: 성과 영문 ID
         type: string
         required: true
+        description: '파일 이름에 쓰입니다. 예: fsta-edu-sdk'
         pattern: *slug-pattern
       - name: type
         label: 분류
@@ -190,24 +260,87 @@ content:
             - { value: collaboration, label: 산학협력 }
             - { value: paper, label: 논문 }
             - { value: project, label: 프로젝트 }
-      - { name: year, label: 연도 (선택), type: number }
+      - name: year
+        label: 연도
+        type: number
+        options: { min: 1990, max: 2100 }
       - *status
       - { name: title, label: 제목, type: object, required: true, fields: *required-line }
       - { name: subtitle, label: 부제, type: object, required: true, fields: *required-line }
       - name: tag
-        label: 태그 (성과 페이지에 표시)
+        label: 태그
         type: object
         required: true
+        description: 성과 페이지에 표시됩니다.
         fields: *required-line
       - name: shortTag
-        label: 짧은 태그 (홈 카드에 표시)
+        label: 짧은 태그
         type: object
         required: true
+        description: 홈 Featured Projects 카드에 표시됩니다.
         fields: *required-line
       - { name: description, label: 설명, type: object, required: true, fields: *required-text }
-      - { name: image, label: 이미지 (선택), type: object, fields: *image }
-      - { name: href, label: 외부 링크 (선택), type: string }
-      - { name: featured, label: 홈 Featured Projects에 표시, type: boolean, default: false }
+      - { name: image, label: 이미지, type: object, fields: *image }
+      - name: href
+        label: 외부 링크
+        type: string
+        pattern: *link-pattern
+      - name: featured
+        label: 홈 Featured Projects에 표시
+        type: boolean
+        default: false
       - name: featuredOrder
-        label: 홈 Featured 표시 순서 (작을수록 앞 / 선택)
+        label: 홈 Featured 표시 순서
         type: number
+        description: 작을수록 앞에 표시됩니다.
+        options: { min: 1, max: 99 }
+
+  - name: schools
+    label: 학교
+    type: collection
+    path: app/content/schools
+    format: json
+    filename: '{fields.slug}.json'
+    view:
+      primary: slug
+      fields: [name.ko, name.en, slug]
+      default: { sort: slug, order: asc }
+    fields:
+      - name: slug
+        label: 학교 영문 ID
+        type: string
+        required: true
+        description: '예: sogang'
+        pattern: *slug-pattern
+      - name: name
+        label: 학교 이름
+        type: object
+        required: true
+        fields:
+          - { name: ko, label: 한국어, type: string, required: true }
+          - { name: en, label: English, type: string, required: true }
+
+  - name: departments
+    label: 학과
+    type: collection
+    path: app/content/departments
+    format: json
+    filename: '{fields.slug}.json'
+    view:
+      primary: slug
+      fields: [name.ko, name.en, slug]
+      default: { sort: slug, order: asc }
+    fields:
+      - name: slug
+        label: 학과 영문 ID
+        type: string
+        required: true
+        description: '예: computer-science-engineering'
+        pattern: *slug-pattern
+      - name: name
+        label: 학과 이름
+        type: object
+        required: true
+        fields:
+          - { name: ko, label: 한국어, type: string, required: true }
+          - { name: en, label: English, type: string, required: true }

@@ -50,7 +50,6 @@ export function ResearchAreas({ axes, locale }: { axes: ResearchAxis[]; locale: 
   );
 }
 
-/** Cards keep the two-column width and gap; a third and later card scroll in sideways. */
 export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; locale: Locale }) {
   const track = useRef<HTMLUListElement>(null);
   const { canBack, canForward } = useScrollEdges(track, 'x');
@@ -94,7 +93,6 @@ export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; local
           </li>
         ))}
       </ul>
-      {/* Desktop arrows only when there is more than one screen of cards; touch users swipe. */}
       {outputs.length > 2 && (
         <div className={styles.projectNav}>
           <button

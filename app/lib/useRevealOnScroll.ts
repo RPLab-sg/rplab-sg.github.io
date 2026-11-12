@@ -2,14 +2,11 @@ import { useEffect } from 'react';
 
 const BLOCKS = '[data-reveal-children] > :not([data-reveal-children])';
 
-// Pops each child of a [data-reveal-children] container up as it enters the viewport.
-// Blocks already on screen at load stay put, so nothing visible ever flashes away.
 export function useRevealOnScroll(key?: unknown) {
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const blocks = Array.from(document.querySelectorAll<HTMLElement>(BLOCKS));
-    // Drop the reveal styles once done so the block's own transitions (hover etc.) apply again.
     const finish = (el: HTMLElement) => {
       el.removeAttribute('data-reveal');
       el.style.transitionDelay = '';
@@ -32,7 +29,6 @@ export function useRevealOnScroll(key?: unknown) {
             el.addEventListener('transitionend', onEnd);
           });
       },
-      // The huge top margin also catches blocks skipped over by an anchor jump.
       { rootMargin: '100000px 0px -12% 0px' },
     );
 

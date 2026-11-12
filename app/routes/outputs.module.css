@@ -116,7 +116,6 @@
   }
 }
 
-/* Sizes the list in container units (cqw) below. */
 .featureList::-webkit-scrollbar {
   display: none;
 }
@@ -124,10 +123,8 @@
   container-type: inline-size;
 }
 
-/* Featured: a fixed window of about 2.5 entries; the half-visible third invites scrolling. */
 .featureList {
   --feature-gap: var(--space-12);
-  /* Image is 5 of 12 columns at 16:9, so one entry is about 21% of the list width tall. */
   --feature-h: calc((100cqw - 11 * var(--space-6)) / 12 * 5 * 9 / 16 + 4 * var(--space-6) * 9 / 16);
   display: flex;
   flex-direction: column;
@@ -137,7 +134,6 @@
   overscroll-behavior-y: auto;
   scroll-snap-type: y proximity;
   scrollbar-width: none;
-  /* Room for the image shadow inside the scroll box. */
   padding: var(--space-2) var(--space-2) var(--space-6);
   margin: calc(var(--space-2) * -1) calc(var(--space-2) * -1) calc(var(--space-6) * -1);
 }
@@ -147,7 +143,6 @@
 }
 
 @media (max-width: 900px) {
-  /* On phones the page itself scrolls; a nested scroll box would trap the thumb. */
   .featureList {
     max-height: none;
     overflow: visible;

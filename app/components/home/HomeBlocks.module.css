@@ -14,7 +14,6 @@
   padding-left: 0;
   border-left: 0;
 }
-/* Only the content lifts; the divider on .axis stays put. */
 .axisInner {
   padding-top: var(--space-1);
   transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
@@ -53,7 +52,6 @@
   color: var(--md-sys-color-on-surface-variant);
 }
 @media (min-width: 1280px) {
-  /* Keep the authored line breaks unwrapped on wide screens. */
   .axisSummary {
     white-space: pre;
   }
@@ -63,21 +61,14 @@
   --project-gap: var(--space-8);
   display: grid;
   grid-auto-flow: column;
-  /* Two cards per view at the original width and gap; any more continue off to the right. */
   grid-auto-columns: calc((100% - var(--project-gap)) / 2);
   gap: var(--project-gap);
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  /* Room for the image shadow, which the scroll box would otherwise clip. */
   padding-block: var(--space-2) var(--space-6);
   margin-block: calc(var(--space-2) * -1) calc(var(--space-6) * -1);
-  /*
-   * Bleed a little into both page margins so neighbouring cards peek in as a hint to swipe
-   * (left only once scrolled). Equal padding keeps the cards at half the content column,
-   * and scroll-padding snaps them to the column edge, not the bleed.
-   */
   --peek: min(64px, var(--page-gutter));
   margin-inline: calc(var(--peek) * -1);
   padding-inline: var(--peek);
@@ -257,7 +248,6 @@
   font-size: 18px;
   line-height: 26px;
 }
-/* Empty 2×1 slot keeps the bento grid intact until a third story exists. */
 .tileEmpty {
   pointer-events: none;
 }
@@ -385,7 +375,6 @@
 }
 
 @media (max-width: 900px) {
-  /* One card per view with the next one peeking in, so a swipe is the obvious move. */
   .projects {
     grid-auto-columns: 85%;
     gap: var(--space-4);

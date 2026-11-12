@@ -8,18 +8,12 @@ const readUrlPage = () => {
   return Number.isInteger(page) && page > 1 ? page : 1;
 };
 
-/**
- * Splits `items` into pages and keeps the page in `?page=` so a refresh or a shared link
- * lands on the same page. The prerendered HTML is page 1 (the server snapshot), and the URL
- * is read once hydrated. Changing `resetKey` (e.g. a filter) returns to page 1.
- */
 export function usePagination<T>(
   items: T[],
   options: { resetKey?: unknown; scrollTarget?: RefObject<HTMLElement | null> } = {},
 ) {
   const { resetKey, scrollTarget } = options;
   const urlPage = useSyncExternalStore(noSubscribe, readUrlPage, () => 1);
-  // `page: null` = nothing chosen yet, so follow the URL.
   const [chosen, setChosen] = useState<{ page: number | null; key: unknown }>({
     page: null,
     key: resetKey,
@@ -54,7 +48,6 @@ export function usePagination<T>(
   return { page: current, pageCount, goTo, pageItems: items.slice(start, start + PAGE_SIZE) };
 }
 
-/** Updates `?page=` in place, keeping React Router's history state intact. */
 function writePage(page: number) {
   const url = new URL(window.location.href);
   if (page > 1) url.searchParams.set('page', String(page));

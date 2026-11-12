@@ -17,7 +17,6 @@ export const outputTypeLabels: Record<OutputType, Localized> = {
 
 export const outputFilterOrder: OutputType[] = ['tech-transfer', 'collaboration', 'paper'];
 
-/** Student groups on the People page, in display order. A group with no students is not shown. */
 export const studentRoleOrder = ['phd', 'ms', 'undergraduate'] as const satisfies MemberRole[];
 
 export const studentRoleLabels: Record<(typeof studentRoleOrder)[number], Localized> = {

@@ -1,4 +1,3 @@
-/** Keep this file free of `@/` imports: `react-router.config.ts` loads content files directly. */
 import type { Localized } from '../i18n/locale';
 
 export type PublishStatus = 'draft' | 'published';
@@ -23,7 +22,6 @@ export type MemberRole = 'professor' | 'phd' | 'ms' | 'undergraduate' | 'alumni'
 export interface MemberLink {
   kind: string;
   label: Localized;
-  /** Empty `href` shows the link without making it clickable. */
   href?: string;
   external: boolean;
 }
@@ -43,7 +41,6 @@ export interface MemberDetail {
   source?: Localized;
 }
 
-/** Per-member contact slots. `null` = show the icon now, connect the address later. */
 export interface MemberContactSlots {
   github: string | null;
   email: string | null;
@@ -53,10 +50,12 @@ export interface Member {
   id: string;
   slug: string;
   role: MemberRole;
-  order: number;
+  joined?: number;
+  graduated?: number;
   status: PublishStatus;
   name: Localized;
   position: Localized;
+  school?: Localized;
   education?: Localized;
   summary?: Localized;
   keywords?: Localized<string[]>;
@@ -75,7 +74,6 @@ export interface NewsItem {
   id: string;
   slug: string;
   status: PublishStatus;
-  /** ISO date (YYYY-MM-DD) or year (YYYY) when the exact date is unknown. */
   publishedAt: string;
   category: NewsCategory;
   title: Localized;
@@ -99,7 +97,6 @@ export interface Output {
   shortTag: Localized;
   description: Localized;
   featured: boolean;
-  /** Position in the home Featured Projects slider (lower comes first). */
   featuredOrder?: number;
   image?: ImageRef;
   href?: string;
@@ -110,8 +107,12 @@ export interface Partner {
   order: number;
   name: Localized;
   logo: string;
-  /** Display size in CSS pixels, tuned so the logos look optically even. */
   width: number;
   height: number;
   href?: string;
+}
+
+export interface Affiliation {
+  slug: string;
+  name: Localized;
 }

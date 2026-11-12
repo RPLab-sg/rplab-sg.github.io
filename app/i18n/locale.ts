@@ -18,7 +18,6 @@ export function getLocaleFromPath(pathname: string): Locale {
 }
 
 export function getLocaleFromRequest(request: Request): Locale {
-  // Client navigations request `<path>.data` (e.g. `/en.data`); strip it before reading the prefix.
   return getLocaleFromPath(new URL(request.url).pathname.replace(/\.data$/, ''));
 }
 

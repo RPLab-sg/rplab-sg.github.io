@@ -31,7 +31,6 @@ function LogoList({
 }
 
 export function PartnerSlider({ partners, locale }: { partners: Partner[]; locale: Locale }) {
-  // Enough copies to cover wide screens; the second half mirrors the first for a seamless loop.
   const copies = Math.max(2, Math.ceil(6 / Math.max(partners.length, 1)));
   const half = Array.from({ length: copies }, () => partners).flat();
   return (

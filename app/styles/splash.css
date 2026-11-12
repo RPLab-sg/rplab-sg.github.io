@@ -6,7 +6,6 @@
   place-items: center;
   background: #ffffff;
   transition: opacity 200ms ease;
-  /* Safety net: if JavaScript never runs, get out of the way. */
   animation: splash-failsafe 0s linear 4s forwards;
 }
 .splash--leaving {
@@ -45,7 +44,6 @@
   white-space: pre;
   display: grid;
 }
-/* Ghost and typed layers share one grid cell; the ghost only sets the width. */
 .splash__ghost,
 .splash__typed {
   grid-area: 1 / 1;

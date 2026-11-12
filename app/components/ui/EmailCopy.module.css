@@ -12,7 +12,6 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  /* Keep the 32px hit area without growing the text line it sits in. */
   margin-block: -6px;
   padding: 0;
   border: 0;

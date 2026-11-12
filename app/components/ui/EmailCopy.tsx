@@ -12,7 +12,6 @@ export function useCopyEmail(email: string) {
     try {
       await navigator.clipboard.writeText(email);
     } catch {
-      // Clipboard blocked (insecure context or denied): fall back to the mail client.
       window.location.href = `mailto:${email}`;
       return;
     }

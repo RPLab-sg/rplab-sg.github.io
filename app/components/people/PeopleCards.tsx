@@ -94,10 +94,19 @@ export function ProfessorCard({ member, locale }: { member: Member; locale: Loca
   );
 }
 
+function undergradLine(member: Member, locale: Locale): string | null {
+  const school = member.school && pick(member.school, locale);
+  const department = member.education && pick(member.education, locale);
+  if (!school && !department) return null;
+  return locale === 'ko'
+    ? [school, department, '학사과정'].filter(Boolean).join(' ')
+    : ['B.S. Student', department, school].filter(Boolean).join(', ');
+}
+
 export function StudentCard({ member, locale }: { member: Member; locale: Locale }) {
   const name = pick(member.name, locale);
-  // Students always show both icons; an empty address shows the icon without a link.
-  const slots = member.contactSlots ?? { github: null, email: null };
+  const github = member.contactSlots?.github || null;
+  const email = member.contactSlots?.email || null;
   return (
     <article className={styles.student}>
       <span className={styles.avatarFrame}>
@@ -121,17 +130,26 @@ export function StudentCard({ member, locale }: { member: Member; locale: Locale
       </span>
       <h3 className={styles.studentName}>{name}</h3>
       <p className={styles.course}>{pick(member.position, locale)}</p>
-      {member.education && <p className={styles.course}>{pick(member.education, locale)}</p>}
+      {member.role === 'undergraduate'
+        ? undergradLine(member, locale) && (
+            <p className={styles.course}>{undergradLine(member, locale)}</p>
+          )
+        : member.joined && (
+            <p className={styles.course}>
+              {ui('joinedYear', locale).replace('{year}', String(member.joined))}
+            </p>
+          )}
       <div className={styles.actions}>
-        <SlotLink href={slots.github} external ariaLabel={`${name} ${ui('githubLabel', locale)}`}>
-          <Icon name="github" size={22} />
-        </SlotLink>
-        <SlotLink
-          href={slots.email ? `mailto:${slots.email}` : null}
-          ariaLabel={`${name} ${ui('emailLabel', locale)}`}
-        >
-          <Icon name="mail" size={22} />
-        </SlotLink>
+        {github && (
+          <SlotLink href={github} external ariaLabel={`${name} ${ui('githubLabel', locale)}`}>
+            <Icon name="github" size={22} />
+          </SlotLink>
+        )}
+        {email && (
+          <SlotLink href={`mailto:${email}`} ariaLabel={`${name} ${ui('emailLabel', locale)}`}>
+            <Icon name="mail" size={22} />
+          </SlotLink>
+        )}
       </div>
     </article>
   );

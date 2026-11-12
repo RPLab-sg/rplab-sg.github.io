@@ -3,7 +3,6 @@ import type { Locale } from '@/i18n/locale';
 import { ui } from '@/i18n/ui';
 import styles from './Pagination.module.css';
 
-/** Page numbers to show: always first and last, the current page ±1, gaps as `null`. */
 function pageList(page: number, count: number): (number | null)[] {
   if (count <= 7) return Array.from({ length: count }, (_, i) => i + 1);
   const pages = new Set([1, count, page - 1, page, page + 1]);

@@ -36,7 +36,6 @@ export default function OutputsPage() {
     <SubPage title={TITLE}>
       {featured.length > 0 && (
         <SubSection id="featured-heading" title={ui('featured', locale)}>
-          {/* Fixed-height list (about 2.5 entries) that scrolls on its own once it overflows. */}
           <div className={styles.featureFrame}>
             <div
               className={styles.featureList}

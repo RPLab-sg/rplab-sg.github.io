@@ -1,23 +1,22 @@
-/**
- * Checks the JSON content that Pages CMS edits (members, news, outputs) before it is built.
- * Run by `npm run check`, so a malformed entry fails CI instead of reaching the live site.
- * The schemas live in `app/content/schema.ts`, shared with the site's loader.
- */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { contentSchemas, parseEntry } from '../app/content/schema.ts';
 
 interface Checked {
   slug: string;
+  school?: unknown;
+  education?: unknown;
   photo?: { src: string };
   image?: { src: string };
   cover?: { src: string };
 }
 
 let failed = false;
+const slugs: Record<string, Set<string>> = {};
 
 for (const [name, schema] of Object.entries(contentSchemas)) {
   const dir = `app/content/${name}`;
   const seen = new Set<string>();
+  slugs[name] = seen;
   for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
     const where = `${dir}/${file}`;
     const fail = (message: string) => {
@@ -37,8 +36,12 @@ for (const [name, schema] of Object.entries(contentSchemas)) {
       continue;
     }
     const entry = result.data;
-    if (seen.has(entry.slug)) fail(`주소 이름(slug) "${entry.slug}"이 다른 항목과 겹칩니다`);
+    if (seen.has(entry.slug)) fail(`영문 ID "${entry.slug}"가 다른 항목과 겹칩니다`);
     seen.add(entry.slug);
+    if (typeof entry.school === 'string' && !slugs.schools?.has(entry.school))
+      fail(`등록되지 않은 학교입니다: ${entry.school}`);
+    if (typeof entry.education === 'string' && !slugs.departments?.has(entry.education))
+      fail(`등록되지 않은 학과입니다: ${entry.education}`);
     const src = (entry.photo ?? entry.image ?? entry.cover)?.src;
     if (src && !existsSync(`public${src}`)) fail(`이미지 파일이 없습니다: public${src}`);
   }

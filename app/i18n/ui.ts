@@ -25,6 +25,7 @@ const strings = {
   copied: { ko: '복사됨', en: 'Copied' },
   professor: { ko: 'Professor', en: 'Professor' },
   students: { ko: 'Students', en: 'Students' },
+  joinedYear: { ko: '({year}~)', en: '({year}~)' },
   email: { ko: 'Email', en: 'Email' },
   phone: { ko: 'Phone', en: 'Phone' },
   office: { ko: 'Office', en: 'Office' },

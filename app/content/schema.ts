@@ -1,16 +1,8 @@
-/**
- * Schemas for the JSON content that Pages CMS edits (members, news, outputs).
- * Pages CMS leaves out fields that were never filled in, so every entry is pruned and parsed here:
- * blank optional fields read as absent, defaults fill the rest, and an entry missing a required
- * field is rejected instead of crashing a page. Keep in step with `types.ts` and `.pages.yml`.
- * Runs only at build time (loaders and prerender), so zod never reaches the browser bundle.
- */
 import { z } from 'zod';
 import { prune } from './prune.ts';
 import { memberPositions } from './roles.ts';
 
 const required = z.string().trim().min(1, '필수 항목입니다');
-/** Korean is required; an empty English value falls back to Korean on the English site. */
 const localized = z.object(
   { ko: required, en: z.string().default('') },
   { error: '필수 항목입니다 (한국어는 꼭 입력)' },
@@ -32,34 +24,42 @@ const image = z.object({
     ),
   alt: localizedText.default({ ko: '', en: '' }),
 });
-/** Links may only be web, mail or phone addresses, or a path on this site (never `javascript:`). */
 const href = z
   .string()
   .regex(
     /^$|^(https?:\/\/|mailto:|tel:|\/)/,
     '링크는 https://, mailto:, tel: 또는 /로 시작해야 합니다',
   );
+const email = z.string().regex(/^$|^[^@\s]+@[^@\s]+\.[^@\s]+$/, '이메일 주소 형식이 아닙니다');
+const githubUrl = z
+  .string()
+  .regex(
+    /^$|^https:\/\/github\.com\/[A-Za-z0-9-]+\/?$/,
+    'https://github.com/아이디 형식이어야 합니다',
+  );
+const year = z.number().int().min(1990).max(2100);
 const timeline = z.object({ period: localized, title: localized, note: localized.optional() });
 
 export const memberSchema = z
   .object({
-    /** Old entries carry an `id`; new ones use the slug. */
     id: z.string().optional(),
     slug,
     role: z.enum(['professor', 'phd', 'ms', 'undergraduate', 'alumni']),
-    order: z.number().default(10),
+    joined: year.optional(),
+    graduated: year.optional(),
     status,
     name: localized,
-    education: localized.optional(),
+    school: z.union([slug, localized]).optional(),
+    education: z.union([slug, localized]).optional(),
     summary: localized.optional(),
     keywords: localizedList.optional(),
-    email: z.string().optional(),
+    email: email.optional(),
     phone: z.string().optional(),
     office: localized.optional(),
     contactSlots: z
       .object({
-        github: href.nullable().default(null),
-        email: z.string().nullable().default(null),
+        github: githubUrl.nullable().default(null),
+        email: email.nullable().default(null),
       })
       .optional(),
     photo: image.optional(),
@@ -84,10 +84,31 @@ export const memberSchema = z
       })
       .optional(),
   })
+  .superRefine((m, ctx) => {
+    if (m.role === 'alumni' && !m.graduated) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['graduated'],
+        message: '졸업생은 졸업 연도가 필요합니다',
+      });
+    }
+    if (m.role !== 'undergraduate') return;
+    if (!m.school)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['school'],
+        message: '학부연구생은 소속 학교가 필요합니다',
+      });
+    if (!m.education)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['education'],
+        message: '학부연구생은 소속 학과가 필요합니다',
+      });
+  })
   .transform(({ id, ...m }) => ({
     ...m,
     id: id ?? m.slug,
-    // Position follows the role, so the CMS only asks for the role.
     position: memberPositions[m.role],
   }));
 
@@ -114,20 +135,27 @@ export const outputSchema = z
     slug,
     status,
     type: z.enum(['tech-transfer', 'collaboration', 'paper', 'project']),
-    year: z.number().int().optional(),
+    year: year.optional(),
     title: localized,
     subtitle: localized,
     tag: localized,
     shortTag: localized,
     description: localized,
     featured: z.boolean().default(false),
-    featuredOrder: z.number().optional(),
+    featuredOrder: z.number().min(1).max(99).optional(),
     image: image.optional(),
     href: href.optional(),
   })
   .transform(({ id, ...o }) => ({ ...o, id: id ?? o.slug }));
 
+const bothLanguages = z.object({ ko: required, en: required });
+
+export const schoolSchema = z.object({ slug, name: bothLanguages });
+export const departmentSchema = z.object({ slug, name: bothLanguages });
+
 export const contentSchemas = {
+  schools: schoolSchema,
+  departments: departmentSchema,
   members: memberSchema,
   news: newsSchema,
   outputs: outputSchema,
@@ -135,7 +163,6 @@ export const contentSchemas = {
 
 export type ParseResult<T> = { ok: true; data: T } | { ok: false; message: string };
 
-/** Prunes and validates one raw JSON entry. */
 export function parseEntry<T>(schema: z.ZodType, raw: unknown): ParseResult<T> {
   const result = schema.safeParse(prune(raw));
   return result.success

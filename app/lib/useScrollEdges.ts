@@ -1,13 +1,10 @@
 import { useCallback, useEffect, useState, type RefObject } from 'react';
 
 export interface ScrollEdges {
-  /** Content is scrolled away from the start. */
   canBack: boolean;
-  /** More content lies past the visible end. */
   canForward: boolean;
 }
 
-/** Tracks whether a scroll container can still move back or forward along one axis. */
 export function useScrollEdges(ref: RefObject<HTMLElement | null>, axis: 'x' | 'y'): ScrollEdges {
   const [edges, setEdges] = useState<ScrollEdges>({ canBack: false, canForward: false });
 
@@ -16,7 +13,6 @@ export function useScrollEdges(ref: RefObject<HTMLElement | null>, axis: 'x' | '
     if (!el) return;
     const pos = axis === 'x' ? el.scrollLeft : el.scrollTop;
     const max = axis === 'x' ? el.scrollWidth - el.clientWidth : el.scrollHeight - el.clientHeight;
-    // 2px slack absorbs sub-pixel rounding at the ends.
     const next = { canBack: pos > 2, canForward: pos < max - 2 };
     setEdges((prev) =>
       prev.canBack === next.canBack && prev.canForward === next.canForward ? prev : next,

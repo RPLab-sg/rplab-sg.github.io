@@ -1,16 +1,13 @@
 {
   "slug": "hyunjong-ji",
   "role": "undergraduate",
-  "order": 10,
   "status": "published",
   "name": {
     "ko": "지현종",
     "en": "Hyunjong Ji"
   },
-  "education": {
-    "ko": "서강대학교 컴퓨터공학과 학사과정",
-    "en": "B.S. student, Computer Science and Engineering, Sogang University"
-  },
+  "school": "sogang",
+  "education": "computer-science-engineering",
   "contactSlots": {
     "github": null,
     "email": null

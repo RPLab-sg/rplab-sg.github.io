@@ -25,7 +25,6 @@ function useActiveSection(ids: string[]): string | undefined {
         const visible = entries.filter((e) => e.isIntersecting);
         if (visible.length > 0) setActive(visible[0]!.target.id);
       },
-      // Active once a section crosses the upper third of the viewport.
       { rootMargin: '-30% 0px -60% 0px' },
     );
     for (const id of ids) {
