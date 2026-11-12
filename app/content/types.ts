@@ -99,6 +99,8 @@ export interface Output {
   shortTag: Localized;
   description: Localized;
   featured: boolean;
+  /** Position in the home Featured Projects slider (lower comes first). */
+  featuredOrder?: number;
   image?: ImageRef;
   href?: string;
 }

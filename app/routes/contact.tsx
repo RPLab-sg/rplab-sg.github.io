@@ -1,5 +1,6 @@
 import { useLoaderData } from 'react-router';
 import { SubPage, SubSection } from '@/components/layout/SubPage';
+import { EmailWithCopy } from '@/components/ui/EmailCopy';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { PillButton } from '@/components/ui/PillButton';
 import { mapEmbedUrl, site } from '@/config/site';
@@ -78,7 +79,14 @@ export default function ContactPage() {
               <Icon name={d.icon} className={styles.icon} />
               <span className={styles.itemText}>
                 <span className={styles.label}>{d.label}</span>
-                {d.href ? (
+                {d.icon === 'mail' ? (
+                  <EmailWithCopy
+                    email={d.value}
+                    locale={locale}
+                    className={styles.value}
+                    iconSize={20}
+                  />
+                ) : d.href ? (
                   <a className={styles.value} href={d.href}>
                     {d.value}
                   </a>

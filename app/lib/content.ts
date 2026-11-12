@@ -1,10 +1,21 @@
 /** Pages read content only through these functions, so a database can replace the files later. */
-import { members } from '@/content/members';
-import { news } from '@/content/news';
-import { outputs } from '@/content/outputs';
+import { prune } from '@/content/prune';
 import { partners } from '@/content/partners';
 import { researchAxes } from '@/content/research';
 import type { Member, NewsItem, Output, Partner, ResearchAxis } from '@/content/types';
+
+/** Members, news and outputs are one JSON file per entry, edited through Pages CMS (`.pages.yml`). */
+const entries = <T>(files: Record<string, unknown>): T[] =>
+  Object.values(files).map((file) => prune(file) as T);
+const members = entries<Member>(
+  import.meta.glob('../content/members/*.json', { eager: true, import: 'default' }),
+);
+const news = entries<NewsItem>(
+  import.meta.glob('../content/news/*.json', { eager: true, import: 'default' }),
+);
+const outputs = entries<Output>(
+  import.meta.glob('../content/outputs/*.json', { eager: true, import: 'default' }),
+);
 
 const byPublishedDesc = (a: NewsItem, b: NewsItem) => b.publishedAt.localeCompare(a.publishedAt);
 
@@ -42,5 +53,7 @@ export async function getOutputs(): Promise<Output[]> {
 }
 
 export async function getFeaturedOutputs(): Promise<Output[]> {
-  return (await getOutputs()).filter((o) => o.featured);
+  return (await getOutputs())
+    .filter((o) => o.featured)
+    .sort((a, b) => (a.featuredOrder ?? Infinity) - (b.featuredOrder ?? Infinity));
 }

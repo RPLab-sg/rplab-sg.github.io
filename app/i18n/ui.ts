@@ -8,6 +8,8 @@ const strings = {
   partners: { ko: 'Research & Industry Partners', en: 'Research & Industry Partners' },
   researchAreas: { ko: 'Research Areas', en: 'Research Areas' },
   featuredProjects: { ko: 'Featured Projects', en: 'Featured Projects' },
+  previousSlide: { ko: '이전 프로젝트', en: 'Previous project' },
+  nextSlide: { ko: '다음 프로젝트', en: 'Next project' },
   latestNews: { ko: 'Latest News & Research', en: 'Latest News & Research' },
   awardsCaption: { ko: '공모전·경진대회 대상', en: 'Grand Prizes in competitions' },
   viewAllNews: { ko: '전체 소식 보기 →', en: 'View all news →' },

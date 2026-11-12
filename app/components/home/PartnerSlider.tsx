@@ -18,6 +18,7 @@ function LogoList({
         <li key={p.id}>
           <img
             src={p.logo}
+            className={p.id === 'connecteve' ? styles.connecteve : undefined}
             alt={hidden ? '' : pick(p.name, locale)}
             width={p.width}
             height={p.height}
@@ -34,7 +35,7 @@ export function PartnerSlider({ partners, locale }: { partners: Partner[]; local
   const copies = Math.max(2, Math.ceil(6 / Math.max(partners.length, 1)));
   const half = Array.from({ length: copies }, () => partners).flat();
   return (
-    <section className={styles.section} aria-labelledby="partners-heading">
+    <section className={styles.section} aria-labelledby="partners-heading" data-reveal-children>
       <h2 id="partners-heading" className={styles.heading} lang="en">
         {ui('partners', locale)}
       </h2>

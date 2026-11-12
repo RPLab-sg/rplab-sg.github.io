@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import type { NewsItem, Output, ResearchAxis } from '@/content/types';
+import { CopiedNote, useCopyEmail } from '@/components/ui/EmailCopy';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { LocalizedLink } from '@/components/ui/LocalizedLink';
 import { Media } from '@/components/ui/Media';
@@ -24,7 +25,7 @@ export function ResearchAreas({ axes, locale }: { axes: ResearchAxis[]; locale: 
       title={ui('researchAreas', locale)}
       className={styles.research}
     >
-      <ul className={styles.axes}>
+      <ul className={styles.axes} data-reveal-children>
         {axes.map((axis) => (
           <li key={axis.id} className={styles.axis}>
             <div className={styles.axisInner}>
@@ -51,7 +52,7 @@ export function ResearchAreas({ axes, locale }: { axes: ResearchAxis[]; locale: 
 export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; locale: Locale }) {
   return (
     <HomeSection id="featured-projects" title={ui('featuredProjects', locale)}>
-      <ul className={styles.projects}>
+      <ul className={styles.projects} data-reveal-children>
         {outputs.map((o) => (
           <li key={o.id} className={styles.project}>
             {o.image && (
@@ -106,7 +107,7 @@ export function LatestNews({
   const [lead, second, third] = items;
   return (
     <HomeSection id="latest-news" title={ui('latestNews', locale)}>
-      <div className={styles.bento}>
+      <div className={styles.bento} data-reveal-children>
         {lead && (
           <article className={`${styles.tile} ${styles.tileLead}`}>
             <Media image={lead.cover} locale={locale} className={styles.leadPhoto} decorative />
@@ -162,21 +163,7 @@ export function LatestNews({
 }
 
 function EmailCopy({ locale }: { locale: Locale }) {
-  const [copied, setCopied] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(site.email);
-    } catch {
-      // Clipboard blocked (insecure context or denied): fall back to the mail client.
-      window.location.href = `mailto:${site.email}`;
-      return;
-    }
-    setCopied(true);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setCopied(false), 2000);
-  };
+  const { copied, copy } = useCopyEmail(site.email);
   return (
     <span className={styles.emailCopyWrap}>
       <button
@@ -188,9 +175,7 @@ function EmailCopy({ locale }: { locale: Locale }) {
         <span>{site.email}</span>
         <Icon name={copied ? 'check' : 'contentCopy'} size={18} />
       </button>
-      <span className={styles.copiedNote} data-visible={copied} role="status">
-        {copied ? ui('copied', locale) : ''}
-      </span>
+      <CopiedNote copied={copied} locale={locale} />
     </span>
   );
 }
@@ -214,7 +199,12 @@ function RadarRings() {
 
 export function JoinBand({ locale }: { locale: Locale }) {
   return (
-    <section id="join" className={`container ${styles.joinWrap}`} aria-labelledby="join-heading">
+    <section
+      id="join"
+      className={`container ${styles.joinWrap}`}
+      aria-labelledby="join-heading"
+      data-reveal-children
+    >
       <div className={styles.join}>
         <RadarRings />
         <h2 id="join-heading" className={styles.joinTitle} lang="en">

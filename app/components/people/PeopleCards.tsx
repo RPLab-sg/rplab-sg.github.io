@@ -1,4 +1,5 @@
 import type { Member } from '@/content/types';
+import { EmailWithCopy } from '@/components/ui/EmailCopy';
 import { Icon } from '@/components/ui/Icon';
 import { Media } from '@/components/ui/Media';
 import { SlotLink } from '@/components/ui/SlotLink';
@@ -8,24 +9,28 @@ import styles from './PeopleCards.module.css';
 
 export function ContactList({ member, locale }: { member: Member; locale: Locale }) {
   const items = [
-    member.email && {
-      label: ui('email', locale),
-      value: member.email,
-      href: `mailto:${member.email}`,
-    },
+    member.email && { label: ui('email', locale), value: member.email, email: true },
     member.phone && {
       label: ui('phone', locale),
       value: member.phone,
       href: `tel:${member.phone}`,
     },
     member.office && { label: ui('office', locale), value: pick(member.office, locale) },
-  ].filter(Boolean) as { label: string; value: string; href?: string }[];
+  ].filter(Boolean) as { label: string; value: string; href?: string; email?: boolean }[];
   return (
     <dl className={styles.contacts}>
       {items.map((c) => (
         <div key={c.label}>
           <dt>{c.label}</dt>
-          <dd>{c.href ? <a href={c.href}>{c.value}</a> : c.value}</dd>
+          <dd>
+            {c.email ? (
+              <EmailWithCopy email={c.value} locale={locale} />
+            ) : c.href ? (
+              <a href={c.href}>{c.value}</a>
+            ) : (
+              c.value
+            )}
+          </dd>
         </div>
       ))}
     </dl>
@@ -91,7 +96,8 @@ export function ProfessorCard({ member, locale }: { member: Member; locale: Loca
 
 export function StudentCard({ member, locale }: { member: Member; locale: Locale }) {
   const name = pick(member.name, locale);
-  const slots = member.contactSlots;
+  // Students always show both icons; an empty address shows the icon without a link.
+  const slots = member.contactSlots ?? { github: null, email: null };
   return (
     <article className={styles.student}>
       <span className={styles.avatarFrame}>
@@ -116,19 +122,17 @@ export function StudentCard({ member, locale }: { member: Member; locale: Locale
       <h3 className={styles.studentName}>{name}</h3>
       <p className={styles.course}>{pick(member.position, locale)}</p>
       {member.education && <p className={styles.course}>{pick(member.education, locale)}</p>}
-      {slots && (
-        <div className={styles.actions}>
-          <SlotLink href={slots.github} external ariaLabel={`${name} ${ui('githubLabel', locale)}`}>
-            <Icon name="github" size={22} />
-          </SlotLink>
-          <SlotLink
-            href={slots.email ? `mailto:${slots.email}` : null}
-            ariaLabel={`${name} ${ui('emailLabel', locale)}`}
-          >
-            <Icon name="mail" size={22} />
-          </SlotLink>
-        </div>
-      )}
+      <div className={styles.actions}>
+        <SlotLink href={slots.github} external ariaLabel={`${name} ${ui('githubLabel', locale)}`}>
+          <Icon name="github" size={22} />
+        </SlotLink>
+        <SlotLink
+          href={slots.email ? `mailto:${slots.email}` : null}
+          ariaLabel={`${name} ${ui('emailLabel', locale)}`}
+        >
+          <Icon name="mail" size={22} />
+        </SlotLink>
+      </div>
     </article>
   );
 }

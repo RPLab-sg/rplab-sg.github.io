@@ -326,28 +326,6 @@
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
-.copiedNote {
-  position: absolute;
-  bottom: calc(100% + 6px);
-  right: 0;
-  padding: 2px var(--space-2);
-  border-radius: var(--shape-xs);
-  background: var(--md-sys-color-on-surface);
-  color: var(--md-sys-color-surface);
-  font-size: 12px;
-  line-height: 16px;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(4px);
-  transition:
-    opacity 150ms var(--ease-standard),
-    transform 150ms var(--ease-standard);
-  pointer-events: none;
-}
-.copiedNote[data-visible='true'] {
-  opacity: 1;
-  transform: none;
-}
 .joinAddress {
   font-size: 13px;
   line-height: 20px;
@@ -355,6 +333,9 @@
 }
 
 @media (max-width: 900px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
   .axes {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -364,9 +345,6 @@
     padding: var(--space-8) 0 0;
     border-left: 0;
     border-top: 1px solid var(--md-sys-color-outline-variant);
-  }
-  .projects {
-    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 720px) {

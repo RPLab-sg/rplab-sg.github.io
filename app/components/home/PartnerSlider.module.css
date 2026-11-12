@@ -60,6 +60,10 @@
   opacity: 0.75;
   mix-blend-mode: multiply;
 }
+.list img.connecteve {
+  height: 44px;
+  object-fit: cover;
+}
 
 @keyframes marquee {
   from {

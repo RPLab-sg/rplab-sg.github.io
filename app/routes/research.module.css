@@ -64,15 +64,6 @@
   align-items: center;
   text-align: center;
 }
-.axis > [data-reveal] {
-  transition:
-    opacity 700ms cubic-bezier(0.05, 0.7, 0.1, 1),
-    transform 700ms cubic-bezier(0.05, 0.7, 0.1, 1);
-}
-.axis > [data-reveal='hidden'] {
-  opacity: 0;
-  transform: translateY(40px) scale(0.97);
-}
 .overline {
   font-family: var(--font-en);
   font-size: 13px;

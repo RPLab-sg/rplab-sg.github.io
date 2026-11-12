@@ -1,0 +1,36 @@
+{
+  "id": "connecteve-advisory",
+  "slug": "connecteve-advisory",
+  "status": "published",
+  "type": "collaboration",
+  "year": 2026,
+  "title": {
+    "ko": "코넥티브 · AI 정형외과 수술로봇 자문",
+    "en": "Connecteve · AI Orthopedic Surgical Robotics Advisory"
+  },
+  "subtitle": {
+    "ko": "근골격계(MSK) Physical AI 플랫폼 기술 자문",
+    "en": "Technical advisory for a musculoskeletal (MSK) Physical AI platform"
+  },
+  "tag": {
+    "ko": "수술로봇 · 기술 자문",
+    "en": "Surgical Robotics · Technical Advisory"
+  },
+  "shortTag": {
+    "ko": "Surgical Robotics · Advisory",
+    "en": "Surgical Robotics · Advisory"
+  },
+  "description": {
+    "ko": "AI·로봇 융합 기반 정형외과 메디테크 기업 코넥티브 자문 교수로 참여해 AI 기반 정형외과 수술로봇과 MSK 데이터 플랫폼 개발을 자문합니다.",
+    "en": "Prof. Jinho Son advises Connecteve on AI-driven orthopedic surgical robots and its MSK data platform, and delivered the closing remarks at CONNECTEVE PRESS DAY 2026."
+  },
+  "featured": true,
+  "featuredOrder": 2,
+  "image": {
+    "src": "/images/projects/connecteve.webp",
+    "alt": {
+      "ko": "CONNECTEVE",
+      "en": "CONNECTEVE"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "2025-seocho-grand-prize",
+  "slug": "2025-seocho-grand-prize",
+  "status": "published",
+  "publishedAt": "2025",
+  "category": "award",
+  "title": {
+    "ko": "지도팀 서강로보틱스, 2025 서초 AI·로봇 공공서비스 공모전 대상 수상",
+    "en": "Advised team Sogang Robotics wins the Grand Prize at the 2025 Seocho AI·Robot Public Service Contest"
+  },
+  "detail": {
+    "ko": "서초구청장상",
+    "en": "Seocho District Mayor's Award"
+  },
+  "summary": {
+    "ko": "연구실 지도팀 서강로보틱스가 2025 서초 AI·로봇 공공서비스 공모전에서 대상(서초구청장상)을 받았습니다.",
+    "en": "Sogang Robotics, a team advised by the lab, received the Grand Prize (Seocho District Mayor's Award) at the 2025 Seocho AI·Robot Public Service Contest."
+  },
+  "body": {
+    "ko": [],
+    "en": []
+  }
+}
