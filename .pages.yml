@@ -36,8 +36,8 @@ x-image: &image
     description: 화면 낭독기와 이미지가 안 보일 때 쓰입니다.
     fields: *localized-line
 x-timeline: &timeline
-  - { name: period, label: 기간, type: object, required: true, fields: *required-line }
-  - { name: title, label: 내용, type: object, required: true, fields: *required-line }
+  - { name: period, label: 기간, type: object, fields: *localized-line }
+  - { name: title, label: 내용, type: object, fields: *localized-line }
   - { name: note, label: 비고, type: object, fields: *localized-text }
 x-status: &status
   name: status
@@ -159,10 +159,9 @@ content:
           - name: kind
             label: 버튼 ID
             type: string
-            required: true
             description: '버튼마다 다른 영문 ID. 예: profile, department'
             pattern: *slug-pattern
-          - { name: label, label: 버튼 글자, type: object, required: true, fields: *required-line }
+          - { name: label, label: 버튼 글자, type: object, fields: *localized-line }
           - name: href
             label: 링크 주소
             type: string
@@ -174,14 +173,14 @@ content:
         type: object
         description: 비우면 전체 이력 페이지가 만들어지지 않습니다.
         fields:
-          - { name: summary, label: 소개, type: object, required: true, fields: *required-text }
+          - { name: summary, label: 소개, type: object, fields: *localized-text }
           - name: research
             label: 연구 분야
             type: object
             list: true
             fields:
-              - { name: title, label: 제목, type: object, required: true, fields: *required-line }
-              - { name: body, label: 설명, type: object, required: true, fields: *required-text }
+              - { name: title, label: 제목, type: object, fields: *localized-line }
+              - { name: body, label: 설명, type: object, fields: *localized-text }
           - { name: experience, label: 경력, type: object, list: true, fields: *timeline }
           - { name: education, label: 학력, type: object, list: true, fields: *timeline }
           - { name: activities, label: 활동, type: object, list: true, fields: *timeline }
