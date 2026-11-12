@@ -4,3 +4,8 @@ dist/
 .react-router/
 package-lock.json
 
+app/content/members/
+app/content/news/
+app/content/outputs/
+app/content/schools/
+app/content/departments/

@@ -35,7 +35,6 @@ function wait(ms: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, Math.max(0, ms)));
 }
 
-/** Speeds finite splash animations up to end within `FAST_FORWARD_MS` (caret and failsafe excluded). */
 async function fastForward(root: HTMLElement): Promise<void> {
   const animations = root
     .getAnimations({ subtree: true })
@@ -62,7 +61,6 @@ export function Splash() {
 
   useEffect(() => {
     let cancelled = false;
-    // Normal speed while loading, then fast-forward: quick loads get a short splash.
     waitForLoad()
       .then(() => (rootRef.current ? fastForward(rootRef.current) : undefined))
       .then(() => wait(HOLD_MS))
@@ -111,7 +109,6 @@ export function Splash() {
             />
           ))}
         </svg>
-        {/* The hidden copy reserves the final width so typing grows left-to-right, not from the center. */}
         <p
           className="splash__name"
           style={

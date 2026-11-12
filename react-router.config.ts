@@ -1,5 +1,18 @@
 import type { Config } from '@react-router/dev/config';
-import { members } from './app/content/members';
+import { readdirSync, readFileSync } from 'node:fs';
+import { memberSchema, parseEntry } from './app/content/schema';
+import type { Member } from './app/content/types';
+
+const membersDir = './app/content/members';
+const members: Member[] = readdirSync(membersDir)
+  .filter((file) => file.endsWith('.json'))
+  .flatMap((file) => {
+    const result = parseEntry<Member>(
+      memberSchema,
+      JSON.parse(readFileSync(`${membersDir}/${file}`, 'utf8')),
+    );
+    return result.ok ? [result.data] : [];
+  });
 
 const bothLocales = (path: string) => [path, `/en${path}`];
 

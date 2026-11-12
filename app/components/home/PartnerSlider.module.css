@@ -41,7 +41,6 @@
   display: flex;
   width: max-content;
   height: 100%;
-  /* The animated track is its own compositing group, so give multiply a surface to blend into. */
   background: var(--md-sys-color-surface);
   animation: marquee 40s linear infinite;
 }
@@ -59,6 +58,10 @@
   max-height: 64px;
   opacity: 0.75;
   mix-blend-mode: multiply;
+}
+.list img.connecteve {
+  height: 44px;
+  object-fit: cover;
 }
 
 @keyframes marquee {

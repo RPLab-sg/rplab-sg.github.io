@@ -1,0 +1,30 @@
+{
+  "slug": "2026-radai-grand-prize",
+  "status": "published",
+  "publishedAt": "2026",
+  "category": "award",
+  "title": {
+    "ko": "지도팀 RADAI, 2026 AI·SW중심대학 디지털 경진대회 SW부문 대상 수상",
+    "en": "Advised team RADAI wins the Grand Prize in the SW Track at the 2026 AI·SW-Centered University Digital Competition"
+  },
+  "detail": {
+    "ko": "부총리 겸 과학기술정보통신부장관상",
+    "en": "Minister of Science and ICT Award"
+  },
+  "summary": {
+    "ko": "서강대학교 RADAI 팀이 AI·SW중심대학협의회가 주최한 2026 AI·SW중심대학 디지털 경진대회 SW부문에서 대상(부총리 겸 과학기술정보통신부장관상)을 받았습니다.",
+    "en": "Sogang University's team RADAI received the Grand Prize (Minister of Science and ICT Award) in the SW Track of the 2026 AI·SW-Centered University Digital Competition, hosted by the AI·SW-Centered University Council."
+  },
+  "body": {
+    "ko": [],
+    "en": []
+  },
+  "href": "https://sweducenter.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=7252&siteId=sweducenter&pkid=939214",
+  "cover": {
+    "src": "/images/news/2026-radai-grand-prize.jpg",
+    "alt": {
+      "ko": "2026 AI·SW중심대학 디지털 경진대회 수상자 단체 사진",
+      "en": "Group photo of award winners at the 2026 AI·SW-Centered University Digital Competition"
+    }
+  }
+}

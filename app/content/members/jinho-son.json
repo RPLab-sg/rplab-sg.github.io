@@ -1,0 +1,391 @@
+{
+  "slug": "jinho-son",
+  "role": "professor",
+  "status": "published",
+  "name": {
+    "ko": "손진호",
+    "en": "Jinho Son"
+  },
+  "summary": {
+    "ko": "실제 환경을 인지하고 판단하며 자율적으로 동작하는 Physical AI 로봇과 이를 구현하기 위한 센싱 및 시스템 통합 기술을 연구합니다. 대기업 로봇 연구소와 전문 로봇 기업에서 축적한 연구개발 경험을 바탕으로, 실제 산업 현장에 적용할 수 있는 실용적인 로봇 시스템 개발에 주력하고 있습니다.",
+    "en": "Researches AI-based next-generation surgical robot systems and robotics and AI applications in industry, including knee geometry and gap measurement and automated surgical planning."
+  },
+  "keywords": {
+    "ko": [
+      "AI 기반 수술로봇",
+      "산업 로봇·AI 응용",
+      "Ad-hoc 네트워크"
+    ],
+    "en": [
+      "AI Surgical Robotics",
+      "Industrial Robotics & AI",
+      "Ad-hoc Networks"
+    ]
+  },
+  "email": "jinhoson@sogang.ac.kr",
+  "phone": "02-705-8497",
+  "office": {
+    "ko": "김대건관 K226",
+    "en": "K226, Kim Dae-gun Hall"
+  },
+  "photo": {
+    "src": "/images/people/jinho-son.jpg",
+    "alt": {
+      "ko": "손진호 교수 사진",
+      "en": "Portrait of Professor Jinho Son"
+    }
+  },
+  "links": [
+    {
+      "kind": "profile",
+      "label": {
+        "ko": "전체 이력 →",
+        "en": "Full profile →"
+      },
+      "href": "/people/jinho-son",
+      "external": false
+    },
+    {
+      "kind": "department",
+      "label": {
+        "ko": "학과 프로필 ↗",
+        "en": "Department profile ↗"
+      },
+      "href": "https://computing.sogang.ac.kr/ko/education/undergraduate/faculty/MjAyNjA4MjcxNzUxMTc1NTU?dept=computer-science",
+      "external": true
+    },
+    {
+      "kind": "tech-transfer",
+      "label": {
+        "ko": "기술이전 프로필 ↗",
+        "en": "Tech transfer profile ↗"
+      },
+      "href": "https://www.sogangtech.com/researcher/2342",
+      "external": true
+    }
+  ],
+  "detail": {
+    "summary": {
+      "ko": "로봇과 AI를 결합해 실제 환경에서 작동하는 시스템을 만드는 연구를 합니다. LG전자 로봇선행연구소 소장을 비롯해 산업계에서 로봇과 지능형 시스템 연구를 이끌었고, 현재는 Physical AI 로봇, 센싱, 시스템 통합을 중심으로 연구와 산학협력을 이어가고 있습니다.",
+      "en": "Researches AI-based next-generation surgical robot systems. Automatically measures the knee's bone geometry and the gap between femur and tibia, reflects them in surgical planning in real time, and develops a knee-arthroplasty robot that automates planning with AI to cut bone safely in less time."
+    },
+    "research": [
+      {
+        "title": {
+          "ko": "Physical AI 로봇 시스템",
+          "en": "Physical AI Robot Systems"
+        },
+        "body": {
+          "ko": "로봇이 주변을 인지하고 스스로 판단해 움직이도록 기구, 제어, AI를 하나의 시스템으로 설계합니다. 의료와 산업 현장의 문제를 출발점으로 삼으며, AI로 수술 계획을 자동화하는 인공관절 수술로봇 연구가 그 예입니다.",
+          "en": "Designs mechanisms, control and AI as one system so robots can perceive their surroundings, decide and act on their own. The work starts from problems in healthcare and industry, such as a joint-replacement surgical robot that automates surgical planning with AI."
+        }
+      },
+      {
+        "title": {
+          "ko": "지능형 센싱",
+          "en": "Intelligent Sensing"
+        },
+        "body": {
+          "ko": "레이더를 비롯한 다양한 센서 신호를 처리하고 결합해 사람과 환경을 인지하는 기술을 연구합니다.",
+          "en": "Studies how to process and combine signals from radar and other sensors to perceive people and their surroundings."
+        }
+      },
+      {
+        "title": {
+          "ko": "시스템 통합과 실증",
+          "en": "System Integration and Validation"
+        },
+        "body": {
+          "ko": "연구 결과를 시제품으로 통합하고 실제 환경에서 검증해, 산학협력과 기술이전으로 이어지도록 합니다.",
+          "en": "Integrates research into prototypes and validates them in real environments, carrying results into industry collaboration and technology transfer."
+        }
+      }
+    ],
+    "experience": [
+      {
+        "period": {
+          "ko": "현재",
+          "en": "Present"
+        },
+        "title": {
+          "ko": "서강대학교 컴퓨터공학과 · 부교수",
+          "en": "Dept. of Computer Science and Engineering, Sogang University · Associate Professor"
+        }
+      },
+      {
+        "period": {
+          "ko": "2024.11 – 2025.05",
+          "en": "2024.11 – 2025.05"
+        },
+        "title": {
+          "ko": "(주)인텔로이드 · 부사장",
+          "en": "Inteloid · Vice President"
+        }
+      },
+      {
+        "period": {
+          "ko": "2024.05 – 2024.10",
+          "en": "2024.05 – 2024.10"
+        },
+        "title": {
+          "ko": "(주)아크릴 · 전무",
+          "en": "Acryl · Executive Vice President"
+        }
+      },
+      {
+        "period": {
+          "ko": "2021.03 – 2024.04",
+          "en": "2021.03 – 2024.04"
+        },
+        "title": {
+          "ko": "(주)엔젤로보틱스 · 이사",
+          "en": "Angel Robotics · Director"
+        }
+      },
+      {
+        "period": {
+          "ko": "2020.04 – 2021.03",
+          "en": "2020.04 – 2021.03"
+        },
+        "title": {
+          "ko": "(주)에스디옵틱스 · 전무",
+          "en": "SD Optics · Executive Vice President"
+        }
+      },
+      {
+        "period": {
+          "ko": "2017.07 – 2020.02",
+          "en": "2017.07 – 2020.02"
+        },
+        "title": {
+          "ko": "LG전자 로봇선행연구소 · 소장(상무)",
+          "en": "Robot Advanced Research Lab, LG Electronics · Head (VP)"
+        },
+        "note": {
+          "ko": "로봇 연구개발",
+          "en": "Robotics R&D"
+        }
+      },
+      {
+        "period": {
+          "ko": "2016.01 – 2017.06",
+          "en": "2016.01 – 2017.06"
+        },
+        "title": {
+          "ko": "LG전자 인텔리전스연구소 · 소장(상무)",
+          "en": "Intelligence Research Lab, LG Electronics · Head (VP)"
+        },
+        "note": {
+          "ko": "인공지능 선행연구개발",
+          "en": "Advanced AI R&D"
+        }
+      },
+      {
+        "period": {
+          "ko": "2011.01 – 2015.12",
+          "en": "2011.01 – 2015.12"
+        },
+        "title": {
+          "ko": "LG전자기술원 미래IT융합연구소 · 소장(상무)",
+          "en": "Future IT Convergence Lab, LG Electronics Advanced Research Institute · Head (VP)"
+        },
+        "note": {
+          "ko": "인공지능 선행연구개발",
+          "en": "Advanced AI R&D"
+        }
+      },
+      {
+        "period": {
+          "ko": "2001.01 – 2010.12",
+          "en": "2001.01 – 2010.12"
+        },
+        "title": {
+          "ko": "LG전자기술원 정보기술연구소",
+          "en": "Information Technology Lab, LG Electronics Advanced Research Institute"
+        },
+        "note": {
+          "ko": "인공지능 선행연구개발",
+          "en": "Advanced AI R&D"
+        }
+      },
+      {
+        "period": {
+          "ko": "2001.01 – 2009.12",
+          "en": "2001.01 – 2009.12"
+        },
+        "title": {
+          "ko": "LG전자기술원 PAN그룹",
+          "en": "PAN Group, LG Electronics Advanced Research Institute"
+        },
+        "note": {
+          "ko": "근거리 네트워크 기술 개발",
+          "en": "Short-range network technology development"
+        }
+      },
+      {
+        "period": {
+          "ko": "2000.01 – 2010.01",
+          "en": "2000.01 – 2010.01"
+        },
+        "title": {
+          "ko": "LG전자 · 수석연구원",
+          "en": "LG Electronics · Principal Research Engineer"
+        }
+      },
+      {
+        "period": {
+          "ko": "1999.01 – 2000.12",
+          "en": "1999.01 – 2000.12"
+        },
+        "title": {
+          "ko": "LG정보통신 차세대통신연구소 · 책임연구원",
+          "en": "Next-Generation Telecom Lab, LG Information & Communications · Senior Research Engineer"
+        },
+        "note": {
+          "ko": "기지국 장비 소프트웨어 개발",
+          "en": "Base station software development"
+        }
+      },
+      {
+        "period": {
+          "ko": "1993.04 – 2000.01",
+          "en": "1993.04 – 2000.01"
+        },
+        "title": {
+          "ko": "LG이노텍",
+          "en": "LG Innotek"
+        }
+      },
+      {
+        "period": {
+          "ko": "1993.01 – 1998.12",
+          "en": "1993.01 – 1998.12"
+        },
+        "title": {
+          "ko": "LG정밀 통신연구소 · 선임연구원",
+          "en": "Telecom Research Lab, LG Precision · Research Engineer"
+        },
+        "note": {
+          "ko": "통신장비(무전기) 개발",
+          "en": "Communication equipment (radio) development"
+        }
+      }
+    ],
+    "education": [
+      {
+        "period": {
+          "ko": "1999 – 2004",
+          "en": "1999 – 2004"
+        },
+        "title": {
+          "ko": "성균관대학교 전기전자및컴퓨터공학과 · 박사",
+          "en": "Ph.D., Electrical and Computer Engineering, Sungkyunkwan University"
+        },
+        "note": {
+          "ko": "프로토콜공학 (무선 네트워크 프로토콜 설계)",
+          "en": "Protocol engineering (wireless network protocol design)"
+        }
+      },
+      {
+        "period": {
+          "ko": "1991 – 1993",
+          "en": "1991 – 1993"
+        },
+        "title": {
+          "ko": "성균관대학교 기계공학과 · 석사",
+          "en": "M.S., Mechanical Engineering, Sungkyunkwan University"
+        },
+        "note": {
+          "ko": "파괴역학 (인공지능 기반 파괴역학 설계)",
+          "en": "Fracture mechanics (AI-based fracture mechanics design)"
+        }
+      },
+      {
+        "period": {
+          "ko": "1987 – 1991",
+          "en": "1987 – 1991"
+        },
+        "title": {
+          "ko": "성균관대학교 기계설계학과 · 학사",
+          "en": "B.S., Mechanical Design, Sungkyunkwan University"
+        },
+        "note": {
+          "ko": "재료역학",
+          "en": "Mechanics of materials"
+        }
+      }
+    ],
+    "activities": [
+      {
+        "period": {
+          "ko": "2026",
+          "en": "2026"
+        },
+        "title": {
+          "ko": "(주)코넥티브 · 자문 교수",
+          "en": "Connecteve · Advisory Professor"
+        },
+        "note": {
+          "ko": "AI 기반 정형외과 수술로봇 · CONNECTEVE PRESS DAY 2026 폐회사 (2026.03.26)",
+          "en": "AI-driven orthopedic surgical robotics · Closing remarks at CONNECTEVE PRESS DAY 2026 (Mar 26, 2026)"
+        }
+      },
+      {
+        "period": {
+          "ko": "2025.10",
+          "en": "2025.10"
+        },
+        "title": {
+          "ko": "2025 서초 AI·로봇 공공서비스 공모전 대상 (서초구청장상)",
+          "en": "Grand Prize, 2025 Seocho AI·Robot Public Service Contest (Seocho District Mayor's Award)"
+        },
+        "note": {
+          "ko": "지도팀 서강로보틱스 · 서초구, 현대차 로봇팀과 단계적 실증·현장 구현 협업 추진",
+          "en": "Advised team Sogang Robotics · staged field pilots planned with Seocho-gu and Hyundai Motor's robotics team"
+        }
+      },
+      {
+        "period": {
+          "ko": "2025.06 – 2030.02",
+          "en": "2025.06 – 2030.02"
+        },
+        "title": {
+          "ko": "서울시 RISE 사업",
+          "en": "Seoul RISE Program"
+        },
+        "note": {
+          "ko": "AI 로봇 분야 글로벌 인재 유치 및 기술 사업화",
+          "en": "Attracting global AI-robotics talent and commercializing technology"
+        }
+      },
+      {
+        "period": {
+          "ko": "2024.05 – 2029.12",
+          "en": "2024.05 – 2029.12"
+        },
+        "title": {
+          "ko": "SW중심대학 사업 (2단계)",
+          "en": "SW-Centered University Program (Phase 2)"
+        },
+        "note": {
+          "ko": "PBL 기반 실무형 교육과정 총괄, 산업 현장 맞춤형 인재 양성",
+          "en": "Leads PBL-based practical curriculum and industry-ready talent development"
+        }
+      },
+      {
+        "period": {
+          "ko": "—",
+          "en": "—"
+        },
+        "title": {
+          "ko": "현대 모빌리티 SW 채용연계 트랙",
+          "en": "Hyundai Mobility SW Hiring Track"
+        },
+        "note": {
+          "ko": "산업체 맞춤형 인재 양성 프로그램 운영",
+          "en": "Runs an industry-tailored talent program"
+        }
+      }
+    ]
+  }
+}

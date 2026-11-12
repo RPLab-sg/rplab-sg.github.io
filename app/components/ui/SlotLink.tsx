@@ -12,7 +12,6 @@ interface Props {
   children: ReactNode;
 }
 
-/** Renders a non-clickable `<a>` until `href` is filled in. */
 export function SlotLink({ href, external = false, className, ariaLabel, children }: Props) {
   const locale = useLocale();
   const classes = [className ?? '', href ? '' : styles.pending].join(' ').trim();

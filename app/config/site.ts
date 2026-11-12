@@ -20,7 +20,6 @@ export const site = {
   } satisfies Localized,
   footerAddress:
     'K226, Kim Dae-gun Hall, Sogang University, 35 Baekbeom-ro, Mapo-gu, Seoul 04107, Korea',
-  /** Keyless Maps embed; switch to the Maps Embed API with a restricted key for production. */
   mapQuery: {
     ko: '서강대학교 김대건관',
     en: 'Kim Dae-gun Hall, Sogang University, Seoul',

@@ -9,6 +9,7 @@ import {
 import { PartnerSlider } from '@/components/home/PartnerSlider';
 import { getFeaturedOutputs, getNews, getPartners, getResearchAxes } from '@/lib/content';
 import { staticMeta, withLocale, type LoaderArgs } from '@/lib/route';
+import { useRevealOnScroll } from '@/lib/useRevealOnScroll';
 
 export async function loader({ request }: LoaderArgs) {
   const [partners, axes, featured, allNews] = await Promise.all([
@@ -33,6 +34,7 @@ export const meta = staticMeta();
 
 export default function HomePage() {
   const { locale, partners, axes, featured, news, stats } = useLoaderData<typeof loader>();
+  useRevealOnScroll(locale);
   return (
     <>
       <Hero locale={locale} />

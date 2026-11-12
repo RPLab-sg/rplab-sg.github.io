@@ -96,26 +96,29 @@
   letter-spacing: 0.2px;
 }
 
+.studentGroups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.studentGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.groupHeading {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: var(--md-sys-color-on-surface-variant);
+}
 .studentGrid {
   position: relative;
   isolation: isolate;
   display: grid;
   grid-template-columns: repeat(auto-fill, 256px);
   gap: var(--space-12);
-}
-.studentGrid::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  border-radius: 50%;
-  filter: blur(60px);
-  pointer-events: none;
-  top: 30px;
-  left: -30px;
-  width: 190px;
-  height: 190px;
-  background: var(--md-sys-color-primary-fixed-dim);
-  opacity: 0.9;
 }
 .student {
   display: flex;
@@ -152,7 +155,6 @@
   left: -5px;
   width: 130px;
   height: 130px;
-  /* The global media reset caps width at 100%, which would squash the ring to 120px. */
   max-width: none;
   overflow: visible;
   transform: rotate(-90deg);
@@ -218,6 +220,7 @@
 .actions {
   display: flex;
   gap: var(--space-1);
+  min-height: 40px;
   margin-top: var(--space-4);
 }
 .actions a {

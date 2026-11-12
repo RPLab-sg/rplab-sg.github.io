@@ -14,7 +14,6 @@
   padding-left: 0;
   border-left: 0;
 }
-/* Only the content lifts; the divider on .axis stays put. */
 .axisInner {
   padding-top: var(--space-1);
   transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
@@ -53,20 +52,64 @@
   color: var(--md-sys-color-on-surface-variant);
 }
 @media (min-width: 1280px) {
-  /* Keep the authored line breaks unwrapped on wide screens. */
   .axisSummary {
     white-space: pre;
   }
 }
 
 .projects {
+  --project-gap: var(--space-8);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-8);
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--project-gap)) / 2);
+  gap: var(--project-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-block: var(--space-2) var(--space-6);
+  margin-block: calc(var(--space-2) * -1) calc(var(--space-6) * -1);
+  --peek: min(64px, var(--page-gutter));
+  margin-inline: calc(var(--peek) * -1);
+  padding-inline: var(--peek);
+  scroll-padding-inline: var(--peek);
+}
+.projects::-webkit-scrollbar {
+  display: none;
 }
 .project {
   display: flex;
   flex-direction: column;
+  scroll-snap-align: start;
+}
+
+.projectNav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+  margin-top: calc(var(--space-2) * -1);
+}
+.projectStep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-full);
+  background: none;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-standard);
+}
+.projectStep:hover:not(:disabled) {
+  background: rgb(68 70 79 / 8%);
+  color: var(--md-sys-color-on-surface);
+}
+.projectStep:disabled {
+  opacity: 0.38;
+  cursor: default;
 }
 .projectImage {
   width: 100%;
@@ -171,8 +214,28 @@
 }
 
 .tileTint {
+  gap: var(--space-3);
+  padding: 12px 12px var(--space-5);
   background: #adc3fe;
   color: #324574;
+}
+.tintPhoto {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  object-fit: cover;
+  border-radius: var(--shape-xs);
+  background: rgb(255 255 255 / 35%);
+}
+.tileTint .tileText {
+  padding-inline: 12px;
+}
+.tileTint .tileTitle {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .tileTint .tileMeta,
 .tileTint .tileCat {
@@ -205,7 +268,6 @@
   font-size: 18px;
   line-height: 26px;
 }
-/* Empty 2×1 slot keeps the bento grid intact until a third story exists. */
 .tileEmpty {
   pointer-events: none;
 }
@@ -326,28 +388,6 @@
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
-.copiedNote {
-  position: absolute;
-  bottom: calc(100% + 6px);
-  right: 0;
-  padding: 2px var(--space-2);
-  border-radius: var(--shape-xs);
-  background: var(--md-sys-color-on-surface);
-  color: var(--md-sys-color-surface);
-  font-size: 12px;
-  line-height: 16px;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(4px);
-  transition:
-    opacity 150ms var(--ease-standard),
-    transform 150ms var(--ease-standard);
-  pointer-events: none;
-}
-.copiedNote[data-visible='true'] {
-  opacity: 1;
-  transform: none;
-}
 .joinAddress {
   font-size: 13px;
   line-height: 20px;
@@ -355,6 +395,13 @@
 }
 
 @media (max-width: 900px) {
+  .projects {
+    grid-auto-columns: 85%;
+    gap: var(--space-4);
+  }
+  .projectNav {
+    display: none;
+  }
   .axes {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -364,9 +411,6 @@
     padding: var(--space-8) 0 0;
     border-left: 0;
     border-top: 1px solid var(--md-sys-color-outline-variant);
-  }
-  .projects {
-    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 720px) {
@@ -383,6 +427,10 @@
   }
   .tileLead {
     grid-row: span 2;
+  }
+  .tintPhoto {
+    flex: none;
+    aspect-ratio: 16 / 9;
   }
   .tileEmpty {
     display: none;

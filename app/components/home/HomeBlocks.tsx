@@ -1,13 +1,16 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useRef, type CSSProperties } from 'react';
 import type { NewsItem, Output, ResearchAxis } from '@/content/types';
+import { CopiedNote, useCopyEmail } from '@/components/ui/EmailCopy';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { LocalizedLink } from '@/components/ui/LocalizedLink';
+import { NewsLink } from '@/components/ui/NewsLink';
 import { Media } from '@/components/ui/Media';
 import { PillButton } from '@/components/ui/PillButton';
 import { site } from '@/config/site';
 import { pick, type Locale } from '@/i18n/locale';
 import { newsCategoryLabels } from '@/lib/labels';
 import { ui } from '@/i18n/ui';
+import { useScrollEdges } from '@/lib/useScrollEdges';
 import { HomeSection } from './HomeSection';
 import styles from './HomeBlocks.module.css';
 
@@ -24,7 +27,7 @@ export function ResearchAreas({ axes, locale }: { axes: ResearchAxis[]; locale: 
       title={ui('researchAreas', locale)}
       className={styles.research}
     >
-      <ul className={styles.axes}>
+      <ul className={styles.axes} data-reveal-children>
         {axes.map((axis) => (
           <li key={axis.id} className={styles.axis}>
             <div className={styles.axisInner}>
@@ -49,9 +52,29 @@ export function ResearchAreas({ axes, locale }: { axes: ResearchAxis[]; locale: 
 }
 
 export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; locale: Locale }) {
+  const track = useRef<HTMLUListElement>(null);
+  const { canBack, canForward } = useScrollEdges(track, 'x');
+
+  const step = (direction: 1 | -1) => {
+    const el = track.current;
+    const card = el?.firstElementChild as HTMLElement | null;
+    if (!el || !card) return;
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+    const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollBy({
+      left: direction * (card.offsetWidth + gap),
+      behavior: smooth ? 'smooth' : 'auto',
+    });
+  };
+
   return (
     <HomeSection id="featured-projects" title={ui('featuredProjects', locale)}>
-      <ul className={styles.projects}>
+      <ul
+        ref={track}
+        className={styles.projects}
+        tabIndex={0}
+        aria-label={ui('projectList', locale)}
+      >
         {outputs.map((o) => (
           <li key={o.id} className={styles.project}>
             {o.image && (
@@ -71,6 +94,28 @@ export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; local
           </li>
         ))}
       </ul>
+      {outputs.length > 2 && (
+        <div className={styles.projectNav}>
+          <button
+            type="button"
+            className={styles.projectStep}
+            onClick={() => step(-1)}
+            disabled={!canBack}
+            aria-label={ui('previousSlide', locale)}
+          >
+            <Icon name="chevronLeft" size={24} />
+          </button>
+          <button
+            type="button"
+            className={styles.projectStep}
+            onClick={() => step(1)}
+            disabled={!canForward}
+            aria-label={ui('nextSlide', locale)}
+          >
+            <Icon name="chevronRight" size={24} />
+          </button>
+        </div>
+      )}
       <p className={styles.moreLink}>
         <LocalizedLink to="/outputs">{ui('viewAllOutputs', locale)}</LocalizedLink>
       </p>
@@ -106,13 +151,15 @@ export function LatestNews({
   const [lead, second, third] = items;
   return (
     <HomeSection id="latest-news" title={ui('latestNews', locale)}>
-      <div className={styles.bento}>
+      <div className={styles.bento} data-reveal-children>
         {lead && (
           <article className={`${styles.tile} ${styles.tileLead}`}>
             <Media image={lead.cover} locale={locale} className={styles.leadPhoto} decorative />
             <span className={styles.tileText}>
               <NewsMetaLine item={lead} locale={locale} />
-              <span className={styles.leadTitle}>{pick(lead.title, locale)}</span>
+              <NewsLink href={lead.href} className={styles.leadTitle}>
+                {pick(lead.title, locale)}
+              </NewsLink>
               {lead.detail && (
                 <span className={styles.tileDetail}>{pick(lead.detail, locale)}</span>
               )}
@@ -121,9 +168,12 @@ export function LatestNews({
         )}
         {second && (
           <article className={`${styles.tile} ${styles.tileTint}`}>
+            <Media image={second.cover} locale={locale} className={styles.tintPhoto} decorative />
             <span className={styles.tileText}>
               <NewsMetaLine item={second} locale={locale} />
-              <span className={styles.tileTitle}>{pick(second.title, locale)}</span>
+              <NewsLink href={second.href} className={styles.tileTitle}>
+                {pick(second.title, locale)}
+              </NewsLink>
             </span>
           </article>
         )}
@@ -142,7 +192,9 @@ export function LatestNews({
             <Media image={third.cover} locale={locale} className={styles.rowPhoto} decorative />
             <span className={styles.tileText}>
               <NewsMetaLine item={third} locale={locale} />
-              <span className={styles.tileTitle}>{pick(third.title, locale)}</span>
+              <NewsLink href={third.href} className={styles.tileTitle}>
+                {pick(third.title, locale)}
+              </NewsLink>
             </span>
           </article>
         ) : (
@@ -162,21 +214,7 @@ export function LatestNews({
 }
 
 function EmailCopy({ locale }: { locale: Locale }) {
-  const [copied, setCopied] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(site.email);
-    } catch {
-      // Clipboard blocked (insecure context or denied): fall back to the mail client.
-      window.location.href = `mailto:${site.email}`;
-      return;
-    }
-    setCopied(true);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setCopied(false), 2000);
-  };
+  const { copied, copy } = useCopyEmail(site.email);
   return (
     <span className={styles.emailCopyWrap}>
       <button
@@ -188,9 +226,7 @@ function EmailCopy({ locale }: { locale: Locale }) {
         <span>{site.email}</span>
         <Icon name={copied ? 'check' : 'contentCopy'} size={18} />
       </button>
-      <span className={styles.copiedNote} data-visible={copied} role="status">
-        {copied ? ui('copied', locale) : ''}
-      </span>
+      <CopiedNote copied={copied} locale={locale} />
     </span>
   );
 }
@@ -214,7 +250,12 @@ function RadarRings() {
 
 export function JoinBand({ locale }: { locale: Locale }) {
   return (
-    <section id="join" className={`container ${styles.joinWrap}`} aria-labelledby="join-heading">
+    <section
+      id="join"
+      className={`container ${styles.joinWrap}`}
+      aria-labelledby="join-heading"
+      data-reveal-children
+    >
       <div className={styles.join}>
         <RadarRings />
         <h2 id="join-heading" className={styles.joinTitle} lang="en">

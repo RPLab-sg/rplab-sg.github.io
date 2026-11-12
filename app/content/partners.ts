@@ -18,11 +18,11 @@ export const partners: Partner[] = [
     height: 44,
   },
   {
-    id: 'smart-radar-system',
+    id: 'connecteve',
     order: 3,
-    name: { ko: '스마트레이더시스템', en: 'Smart Radar System' },
-    logo: '/images/partners/smart-radar-system.png',
-    width: 112,
-    height: 60,
+    name: { ko: '코넥티브', en: 'Connecteve' },
+    logo: '/images/partners/connecteve.png',
+    width: 256,
+    height: 44,
   },
 ];

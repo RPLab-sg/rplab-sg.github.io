@@ -7,6 +7,7 @@ import { pick } from '@/i18n/locale';
 import { ui } from '@/i18n/ui';
 import { getResearchAxes } from '@/lib/content';
 import { scrollToSection } from '@/lib/smoothScroll';
+import { useRevealOnScroll } from '@/lib/useRevealOnScroll';
 import { staticMeta, withLocale, type LoaderArgs } from '@/lib/route';
 import styles from './research.module.css';
 
@@ -24,7 +25,6 @@ function useActiveSection(ids: string[]): string | undefined {
         const visible = entries.filter((e) => e.isIntersecting);
         if (visible.length > 0) setActive(visible[0]!.target.id);
       },
-      // Active once a section crosses the upper third of the viewport.
       { rootMargin: '-30% 0px -60% 0px' },
     );
     for (const id of ids) {
@@ -36,41 +36,11 @@ function useActiveSection(ids: string[]): string | undefined {
   return active;
 }
 
-// Pops each block of a section up as it enters the viewport; blocks already on screen stay put.
-function useRevealOnScroll(ids: string[]) {
-  useEffect(() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries
-          .filter((e) => e.isIntersecting)
-          .forEach((e, i) => {
-            const el = e.target as HTMLElement;
-            el.style.transitionDelay = `${i * 90}ms`;
-            el.dataset.reveal = 'shown';
-            observer.unobserve(el);
-          });
-      },
-      // The huge top margin also catches blocks skipped over by an anchor jump.
-      { rootMargin: '100000px 0px -12% 0px' },
-    );
-    for (const id of ids) {
-      const blocks = document.getElementById(id)?.children ?? [];
-      for (const block of Array.from(blocks) as HTMLElement[]) {
-        if (block.getBoundingClientRect().top < window.innerHeight * 0.88) continue;
-        block.dataset.reveal = 'hidden';
-        observer.observe(block);
-      }
-    }
-    return () => observer.disconnect();
-  }, [ids]);
-}
-
 export default function ResearchPage() {
   const { locale, axes } = useLoaderData<typeof loader>();
   const ids = useMemo(() => axes.map((a) => a.id), [axes]);
   const active = useActiveSection(ids);
-  useRevealOnScroll(ids);
+  useRevealOnScroll(locale);
 
   return (
     <SubPage title="Research">
@@ -101,6 +71,7 @@ export default function ResearchPage() {
               key={axis.id}
               id={axis.id}
               className={styles.axis}
+              data-reveal-children
               aria-labelledby={`${axis.id}-heading`}
             >
               <p className={styles.overline}>

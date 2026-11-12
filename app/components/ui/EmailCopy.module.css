@@ -1,0 +1,56 @@
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.anchor {
+  position: relative;
+  display: inline-flex;
+}
+.button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-block: -6px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-full);
+  background: none;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-standard);
+}
+.button:hover {
+  background: rgb(68 70 79 / 8%);
+  color: var(--md-sys-color-on-surface);
+}
+.note {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  padding: 2px var(--space-2);
+  border-radius: var(--shape-xs);
+  background: var(--md-sys-color-on-surface);
+  color: var(--md-sys-color-surface);
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 150ms var(--ease-standard),
+    transform 150ms var(--ease-standard);
+  pointer-events: none;
+}
+.note[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+}
+.anchor .note {
+  right: 50%;
+  transform: translate(50%, 4px);
+}
+.anchor .note[data-visible='true'] {
+  transform: translate(50%, 0);
+}

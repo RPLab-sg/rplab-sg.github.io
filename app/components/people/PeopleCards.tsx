@@ -1,4 +1,5 @@
 import type { Member } from '@/content/types';
+import { EmailWithCopy } from '@/components/ui/EmailCopy';
 import { Icon } from '@/components/ui/Icon';
 import { Media } from '@/components/ui/Media';
 import { SlotLink } from '@/components/ui/SlotLink';
@@ -8,24 +9,28 @@ import styles from './PeopleCards.module.css';
 
 export function ContactList({ member, locale }: { member: Member; locale: Locale }) {
   const items = [
-    member.email && {
-      label: ui('email', locale),
-      value: member.email,
-      href: `mailto:${member.email}`,
-    },
+    member.email && { label: ui('email', locale), value: member.email, email: true },
     member.phone && {
       label: ui('phone', locale),
       value: member.phone,
       href: `tel:${member.phone}`,
     },
     member.office && { label: ui('office', locale), value: pick(member.office, locale) },
-  ].filter(Boolean) as { label: string; value: string; href?: string }[];
+  ].filter(Boolean) as { label: string; value: string; href?: string; email?: boolean }[];
   return (
     <dl className={styles.contacts}>
       {items.map((c) => (
         <div key={c.label}>
           <dt>{c.label}</dt>
-          <dd>{c.href ? <a href={c.href}>{c.value}</a> : c.value}</dd>
+          <dd>
+            {c.email ? (
+              <EmailWithCopy email={c.value} locale={locale} />
+            ) : c.href ? (
+              <a href={c.href}>{c.value}</a>
+            ) : (
+              c.value
+            )}
+          </dd>
         </div>
       ))}
     </dl>
@@ -89,9 +94,19 @@ export function ProfessorCard({ member, locale }: { member: Member; locale: Loca
   );
 }
 
+function undergradLine(member: Member, locale: Locale): string | null {
+  const school = member.school && pick(member.school, locale);
+  const department = member.education && pick(member.education, locale);
+  if (!school && !department) return null;
+  return locale === 'ko'
+    ? [school, department, '학사과정'].filter(Boolean).join(' ')
+    : ['B.S. Student', department, school].filter(Boolean).join(', ');
+}
+
 export function StudentCard({ member, locale }: { member: Member; locale: Locale }) {
   const name = pick(member.name, locale);
-  const slots = member.contactSlots;
+  const github = member.contactSlots?.github || null;
+  const email = member.contactSlots?.email || null;
   return (
     <article className={styles.student}>
       <span className={styles.avatarFrame}>
@@ -115,20 +130,27 @@ export function StudentCard({ member, locale }: { member: Member; locale: Locale
       </span>
       <h3 className={styles.studentName}>{name}</h3>
       <p className={styles.course}>{pick(member.position, locale)}</p>
-      {member.education && <p className={styles.course}>{pick(member.education, locale)}</p>}
-      {slots && (
-        <div className={styles.actions}>
-          <SlotLink href={slots.github} external ariaLabel={`${name} ${ui('githubLabel', locale)}`}>
+      {member.role === 'undergraduate'
+        ? undergradLine(member, locale) && (
+            <p className={styles.course}>{undergradLine(member, locale)}</p>
+          )
+        : member.joined && (
+            <p className={styles.course}>
+              {ui('joinedYear', locale).replace('{year}', String(member.joined))}
+            </p>
+          )}
+      <div className={styles.actions}>
+        {github && (
+          <SlotLink href={github} external ariaLabel={`${name} ${ui('githubLabel', locale)}`}>
             <Icon name="github" size={22} />
           </SlotLink>
-          <SlotLink
-            href={slots.email ? `mailto:${slots.email}` : null}
-            ariaLabel={`${name} ${ui('emailLabel', locale)}`}
-          >
+        )}
+        {email && (
+          <SlotLink href={`mailto:${email}`} ariaLabel={`${name} ${ui('emailLabel', locale)}`}>
             <Icon name="mail" size={22} />
           </SlotLink>
-        </div>
-      )}
+        )}
+      </div>
     </article>
   );
 }
