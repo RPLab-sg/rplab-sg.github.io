@@ -24,7 +24,9 @@ export const meta = staticMeta(TITLE);
 export default function OutputsPage() {
   const { locale, outputs } = useLoaderData<typeof loader>();
   const [filter, setFilter] = useState<OutputType | 'all'>('all');
-  const featured = outputs.filter((o) => o.featured);
+  const featured = outputs
+    .filter((o) => o.featured)
+    .sort((a, b) => (a.featuredOrder ?? Infinity) - (b.featuredOrder ?? Infinity));
   const visible = filter === 'all' ? outputs : outputs.filter((o) => o.type === filter);
   const listTop = useRef<HTMLDivElement>(null);
   const { page, pageCount, goTo, pageItems } = usePagination(visible, {

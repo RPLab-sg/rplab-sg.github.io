@@ -31,6 +31,7 @@
   grid-column: 11 / span 2;
 }
 .row {
+  position: relative;
   align-items: start;
   padding-block: var(--space-5);
   border-bottom: 1px solid var(--md-sys-color-outline-variant);

@@ -98,7 +98,11 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
 export async function getOutputs(): Promise<Output[]> {
   return outputs
     .filter((o) => o.status === 'published')
-    .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+    .sort(
+      (a, b) =>
+        (a.featuredOrder ?? Infinity) - (b.featuredOrder ?? Infinity) ||
+        (b.year ?? 0) - (a.year ?? 0),
+    );
 }
 
 export async function getFeaturedOutputs(): Promise<Output[]> {

@@ -234,6 +234,11 @@ content:
       - { name: summary, label: 요약, type: object, required: true, fields: *required-text }
       - { name: body, label: 본문, type: object, fields: *localized-paragraphs }
       - { name: cover, label: 대표 이미지, type: object, fields: *image }
+      - name: href
+        label: 외부 링크
+        type: string
+        description: 입력하면 소식을 눌렀을 때 이 주소가 새 탭으로 열립니다.
+        pattern: *link-pattern
 
   - name: outputs
     label: 성과

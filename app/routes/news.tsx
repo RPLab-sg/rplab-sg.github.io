@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useLoaderData } from 'react-router';
 import { SubPage } from '@/components/layout/SubPage';
 import { Media } from '@/components/ui/Media';
+import { NewsLink } from '@/components/ui/NewsLink';
 import { Pagination } from '@/components/ui/Pagination';
 import { pick } from '@/i18n/locale';
 import { ui } from '@/i18n/ui';
@@ -40,7 +41,9 @@ export default function NewsPage() {
                     {pick(newsCategoryLabels[item.category], locale)}
                   </span>
                   <span className={styles.title}>
-                    <span className={styles.headline}>{pick(item.title, locale)}</span>
+                    <NewsLink href={item.href} className={styles.headline}>
+                      {pick(item.title, locale)}
+                    </NewsLink>
                     {item.detail && (
                       <span className={styles.detail}>{pick(item.detail, locale)}</span>
                     )}

@@ -105,12 +105,14 @@ export default function PeopleDetailPage() {
 
       <div className={styles.sections}>
         <Section id="research" locale={locale}>
-          {detail.research.map((r, i) => (
-            <div key={i} className={styles.research}>
-              <h3>{pick(r.title, locale)}</h3>
-              <p>{pick(r.body, locale)}</p>
-            </div>
-          ))}
+          <div className={styles.researchList}>
+            {detail.research.map((r, i) => (
+              <div key={i} className={styles.research}>
+                <h3>{pick(r.title, locale)}</h3>
+                <p>{pick(r.body, locale)}</p>
+              </div>
+            ))}
+          </div>
         </Section>
         <Section id="experience" locale={locale}>
           <Timeline items={detail.experience} locale={locale} />

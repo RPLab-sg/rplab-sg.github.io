@@ -18,5 +18,13 @@
   "body": {
     "ko": [],
     "en": []
+  },
+  "href": "https://sweducenter.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=7252&siteId=sweducenter&pkid=939214",
+  "cover": {
+    "src": "/images/news/2026-radai-grand-prize.jpg",
+    "alt": {
+      "ko": "2026 AI·SW중심대학 디지털 경진대회 수상자 단체 사진",
+      "en": "Group photo of award winners at the 2026 AI·SW-Centered University Digital Competition"
+    }
   }
 }

@@ -81,6 +81,7 @@ export interface NewsItem {
   summary: Localized;
   body: Localized<string[]>;
   cover?: ImageRef;
+  href?: string;
 }
 
 export type OutputType = 'tech-transfer' | 'collaboration' | 'paper' | 'project';

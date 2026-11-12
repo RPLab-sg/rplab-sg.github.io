@@ -132,6 +132,7 @@ export const newsSchema = z
     summary: localized,
     body: localizedList,
     cover: image.optional(),
+    href: href.optional(),
   })
   .transform(({ id, ...n }) => ({ ...n, id: id ?? n.slug }));
 

@@ -7,7 +7,7 @@
     "en": "Jinho Son"
   },
   "summary": {
-    "ko": "AI 기반 차세대 수술로봇 시스템과 산업 현장의 로봇 및 AI 응용을 연구합니다. 무릎 수술의 형상 및 간격 측정과 수술설계 자동화를 다룹니다.",
+    "ko": "실제 환경을 인지하고 판단하며 자율적으로 동작하는 Physical AI 로봇과 이를 구현하기 위한 센싱 및 시스템 통합 기술을 연구합니다. 대기업 로봇 연구소와 전문 로봇 기업에서 축적한 연구개발 경험을 바탕으로, 실제 산업 현장에 적용할 수 있는 실용적인 로봇 시스템 개발에 주력하고 있습니다.",
     "en": "Researches AI-based next-generation surgical robot systems and robotics and AI applications in industry, including knee geometry and gap measurement and automated surgical planning."
   },
   "keywords": {
@@ -66,18 +66,38 @@
   ],
   "detail": {
     "summary": {
-      "ko": "AI 기반 차세대 수술로봇 시스템을 연구합니다. 무릎 뼈 수술 부위의 형상과 대퇴골·경골 사이 간격을 자동으로 측정해 수술 설계에 실시간으로 반영하고, AI로 수술 설계를 자동화해 짧은 시간에 안전하게 뼈를 절삭하는 차세대 무릎인공관절 수술 로봇 시스템을 개발합니다.",
+      "ko": "로봇과 AI를 결합해 실제 환경에서 작동하는 시스템을 만드는 연구를 합니다. LG전자 로봇선행연구소 소장을 비롯해 산업계에서 로봇과 지능형 시스템 연구를 이끌었고, 현재는 Physical AI 로봇, 센싱, 시스템 통합을 중심으로 연구와 산학협력을 이어가고 있습니다.",
       "en": "Researches AI-based next-generation surgical robot systems. Automatically measures the knee's bone geometry and the gap between femur and tibia, reflects them in surgical planning in real time, and develops a knee-arthroplasty robot that automates planning with AI to cut bone safely in less time."
     },
     "research": [
       {
         "title": {
-          "ko": "AI 기반 차세대 수술로봇 시스템",
-          "en": "AI-based Next-generation Surgical Robot Systems"
+          "ko": "Physical AI 로봇 시스템",
+          "en": "Physical AI Robot Systems"
         },
         "body": {
-          "ko": "인구 고령화로 근골격계 질환 수술 수요가 늘어나는 환경에서, 개인 맞춤형 진단·수술·수술 후 관리를 지원하는 미래 지향형 시스템을 연구합니다. 기존 로봇 인공관절치환술의 한계를 해결하기 위해 무릎 뼈 수술 부위의 형상과 대퇴골(femur)·경골(tibia) 사이 간격을 자동으로 측정해 수술 설계에 실시간으로 반영하는 기술을 개발합니다. 인공지능 프로그램으로 수술 설계를 자동으로 수행하고, 기존 수술 로봇보다 짧은 시간에 안전하게 뼈를 절삭할 수 있는 차세대 무릎인공관절 수술 로봇 시스템을 연구합니다.",
-          "en": "As population aging increases demand for musculoskeletal surgery, we research forward-looking systems that support personalized diagnosis, surgery and post-operative care. To overcome the limits of current robotic joint replacement, we develop technology that automatically measures the geometry of the knee and the gap between femur and tibia and reflects it in surgical planning in real time. We study a next-generation knee-arthroplasty robot that automates surgical planning with AI and cuts bone safely in less time than existing surgical robots."
+          "ko": "로봇이 주변을 인지하고 스스로 판단해 움직이도록 기구, 제어, AI를 하나의 시스템으로 설계합니다. 의료와 산업 현장의 문제를 출발점으로 삼으며, AI로 수술 계획을 자동화하는 인공관절 수술로봇 연구가 그 예입니다.",
+          "en": "Designs mechanisms, control and AI as one system so robots can perceive their surroundings, decide and act on their own. The work starts from problems in healthcare and industry, such as a joint-replacement surgical robot that automates surgical planning with AI."
+        }
+      },
+      {
+        "title": {
+          "ko": "지능형 센싱",
+          "en": "Intelligent Sensing"
+        },
+        "body": {
+          "ko": "레이더를 비롯한 다양한 센서 신호를 처리하고 결합해 사람과 환경을 인지하는 기술을 연구합니다.",
+          "en": "Studies how to process and combine signals from radar and other sensors to perceive people and their surroundings."
+        }
+      },
+      {
+        "title": {
+          "ko": "시스템 통합과 실증",
+          "en": "System Integration and Validation"
+        },
+        "body": {
+          "ko": "연구 결과를 시제품으로 통합하고 실제 환경에서 검증해, 산학협력과 기술이전으로 이어지도록 합니다.",
+          "en": "Integrates research into prototypes and validates them in real environments, carrying results into industry collaboration and technology transfer."
         }
       }
     ],

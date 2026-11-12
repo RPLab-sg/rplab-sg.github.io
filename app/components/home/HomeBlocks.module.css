@@ -214,8 +214,28 @@
 }
 
 .tileTint {
+  gap: var(--space-3);
+  padding: 12px 12px var(--space-5);
   background: #adc3fe;
   color: #324574;
+}
+.tintPhoto {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  object-fit: cover;
+  border-radius: var(--shape-xs);
+  background: rgb(255 255 255 / 35%);
+}
+.tileTint .tileText {
+  padding-inline: 12px;
+}
+.tileTint .tileTitle {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .tileTint .tileMeta,
 .tileTint .tileCat {
@@ -407,6 +427,10 @@
   }
   .tileLead {
     grid-row: span 2;
+  }
+  .tintPhoto {
+    flex: none;
+    aspect-ratio: 16 / 9;
   }
   .tileEmpty {
     display: none;

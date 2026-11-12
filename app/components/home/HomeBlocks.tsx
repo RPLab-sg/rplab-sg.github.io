@@ -3,6 +3,7 @@ import type { NewsItem, Output, ResearchAxis } from '@/content/types';
 import { CopiedNote, useCopyEmail } from '@/components/ui/EmailCopy';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { LocalizedLink } from '@/components/ui/LocalizedLink';
+import { NewsLink } from '@/components/ui/NewsLink';
 import { Media } from '@/components/ui/Media';
 import { PillButton } from '@/components/ui/PillButton';
 import { site } from '@/config/site';
@@ -156,7 +157,9 @@ export function LatestNews({
             <Media image={lead.cover} locale={locale} className={styles.leadPhoto} decorative />
             <span className={styles.tileText}>
               <NewsMetaLine item={lead} locale={locale} />
-              <span className={styles.leadTitle}>{pick(lead.title, locale)}</span>
+              <NewsLink href={lead.href} className={styles.leadTitle}>
+                {pick(lead.title, locale)}
+              </NewsLink>
               {lead.detail && (
                 <span className={styles.tileDetail}>{pick(lead.detail, locale)}</span>
               )}
@@ -165,9 +168,12 @@ export function LatestNews({
         )}
         {second && (
           <article className={`${styles.tile} ${styles.tileTint}`}>
+            <Media image={second.cover} locale={locale} className={styles.tintPhoto} decorative />
             <span className={styles.tileText}>
               <NewsMetaLine item={second} locale={locale} />
-              <span className={styles.tileTitle}>{pick(second.title, locale)}</span>
+              <NewsLink href={second.href} className={styles.tileTitle}>
+                {pick(second.title, locale)}
+              </NewsLink>
             </span>
           </article>
         )}
@@ -186,7 +192,9 @@ export function LatestNews({
             <Media image={third.cover} locale={locale} className={styles.rowPhoto} decorative />
             <span className={styles.tileText}>
               <NewsMetaLine item={third} locale={locale} />
-              <span className={styles.tileTitle}>{pick(third.title, locale)}</span>
+              <NewsLink href={third.href} className={styles.tileTitle}>
+                {pick(third.title, locale)}
+              </NewsLink>
             </span>
           </article>
         ) : (

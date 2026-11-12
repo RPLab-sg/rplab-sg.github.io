@@ -18,5 +18,13 @@
   "body": {
     "ko": [],
     "en": []
+  },
+  "href": "https://www.sogang.ac.kr/ko/detail/548101?namepage=StoryMedia&text=%EC%84%9C%EA%B0%95+Story&configPkId=610&title=%EB%89%B4%EC%8A%A4&data=[{%22label%22:%22%EC%A0%84%EC%B2%B4%22,%22value%22:%22143,610,58%22,%22link%22:%22/ko/story/media-center%22},{%22label%22:%22%EC%84%9C%EA%B0%95+%EB%89%B4%EC%8A%A4%22,%22value%22:%22143%22,%22linkRedirect%22:%22/ko/story/media-center?tab=1%22},{%22label%22:%22%EC%84%9C%EA%B0%95+%ED%94%BC%ED%94%8C%22,%22value%22:%22610%22,%22linkRedirect%22:%22/ko/story/media-center?tab=2%22},{%22label%22:%22%EC%97%B0%EA%B5%AC+%EC%84%B1%EA%B3%BC%22,%22value%22:%2258%22,%22linkRedirect%22:%22/ko/story/media-center?tab=3%22}]&activeIndex=2&redirect=/ko/story/media-center?tab=2",
+  "cover": {
+    "src": "/images/news/2025-seocho-grand-prize.jpg",
+    "alt": {
+      "ko": "2025 서초 AI·로봇 공공서비스 공모전 시상식에서 대상을 받은 서강로보틱스 팀",
+      "en": "Team Sogang Robotics receiving the Grand Prize at the 2025 Seocho AI·Robot Public Service Contest"
+    }
   }
 }
