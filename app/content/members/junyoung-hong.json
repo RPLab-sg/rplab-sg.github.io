@@ -1,0 +1,16 @@
+{
+  "slug": "junyoung-hong",
+  "role": "phd",
+  "name": {
+    "ko": "홍준영",
+    "en": "junyoung hong"
+  },
+  "order": 10,
+  "status": "published",
+  "education": {
+    "ko": "컴퓨터공학과"
+  },
+  "photo": {
+    "src": "/images/Bat Echo · Violet · Primary.svg"
+  }
+}
