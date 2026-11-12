@@ -1,15 +1,14 @@
 {
   "slug": "hyunjong-ji",
   "role": "undergraduate",
-  "status": "published",
   "name": {
     "ko": "지현종",
     "en": "Hyunjong Ji"
   },
+  "status": "published",
   "school": "sogang",
   "education": "computer-science-engineering",
   "contactSlots": {
-    "github": null,
-    "email": null
+    "github": "https://github.com/dandevlog0206"
   }
 }
