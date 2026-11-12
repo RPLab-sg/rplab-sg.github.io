@@ -1,14 +1,10 @@
 {
   "slug": "test",
-  "role": "ms",
-  "order": 10,
-  "status": "published",
+  "role": "undergraduate",
   "name": {
     "ko": "test",
     "en": "test"
   },
-  "education": {
-    "ko": "tset",
-    "en": "test"
-  }
+  "status": "published",
+  "education": "artificial-intelligence"
 }
