@@ -35,12 +35,12 @@ const departments = byslug(
 );
 
 type RawMember = Omit<Member, 'school' | 'education'> & {
-  school?: string | Localized;
-  education?: string | Localized;
+  school?: string;
+  education?: string;
 };
 
-function resolve(value: string | Localized | undefined, names: Map<string, Localized>) {
-  return typeof value === 'string' ? names.get(value) : value;
+function resolve(value: string | undefined, names: Map<string, Localized>) {
+  return value === undefined ? undefined : names.get(value);
 }
 
 const members = entries<RawMember>(

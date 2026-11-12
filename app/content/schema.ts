@@ -49,8 +49,14 @@ export const memberSchema = z
     graduated: year.optional(),
     status,
     name: localized,
-    school: z.union([slug, localized]).optional(),
-    education: z.union([slug, localized]).optional(),
+    school: z
+      .string()
+      .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, '소속 학교를 목록에서 다시 선택하세요')
+      .optional(),
+    education: z
+      .string()
+      .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, '소속 학과를 목록에서 다시 선택하세요')
+      .optional(),
     summary: localized.optional(),
     keywords: localizedList.optional(),
     email: email.optional(),
