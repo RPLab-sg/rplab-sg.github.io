@@ -1,0 +1,26 @@
+{
+  "id": "test",
+  "slug": "test",
+  "status": "published",
+  "type": "project",
+  "title": {
+    "ko": "test"
+  },
+  "subtitle": {
+    "ko": "test"
+  },
+  "tag": {
+    "ko": "test"
+  },
+  "shortTag": {
+    "ko": "test"
+  },
+  "description": {
+    "ko": "test"
+  },
+  "featured": true,
+  "featuredOrder": 3,
+  "image": {
+    "src": "/images/KakaoTalk_Photo_2026-11-06-20-12-33.jpeg"
+  }
+}
