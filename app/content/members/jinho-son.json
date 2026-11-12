@@ -1,5 +1,4 @@
 {
-  "id": "jinho-son",
   "slug": "jinho-son",
   "role": "professor",
   "order": 1,
@@ -8,17 +7,21 @@
     "ko": "손진호",
     "en": "Jinho Son"
   },
-  "position": {
-    "ko": "서강대학교 컴퓨터공학과 부교수",
-    "en": "Associate Professor, Computer Science and Engineering, Sogang University"
-  },
   "summary": {
     "ko": "AI 기반 차세대 수술로봇 시스템과 산업 현장의 로봇 및 AI 응용을 연구합니다. 무릎 수술의 형상 및 간격 측정과 수술설계 자동화를 다룹니다.",
     "en": "Researches AI-based next-generation surgical robot systems and robotics and AI applications in industry, including knee geometry and gap measurement and automated surgical planning."
   },
   "keywords": {
-    "ko": ["AI 기반 수술로봇", "산업 로봇·AI 응용", "Ad-hoc 네트워크"],
-    "en": ["AI Surgical Robotics", "Industrial Robotics & AI", "Ad-hoc Networks"]
+    "ko": [
+      "AI 기반 수술로봇",
+      "산업 로봇·AI 응용",
+      "Ad-hoc 네트워크"
+    ],
+    "en": [
+      "AI Surgical Robotics",
+      "Industrial Robotics & AI",
+      "Ad-hoc Networks"
+    ]
   },
   "email": "jinhoson@sogang.ac.kr",
   "phone": "02-705-8497",

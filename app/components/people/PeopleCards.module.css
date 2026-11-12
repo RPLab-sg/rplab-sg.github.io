@@ -96,6 +96,35 @@
   letter-spacing: 0.2px;
 }
 
+/* Students are grouped by role (Ph.D., M.S., undergraduate); empty groups are left out. */
+.studentGroups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.studentGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+/* M3 title-medium label above each group. */
+.groupHeading {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+/* Only the first group gets the soft glow behind its cards. */
+.studentGroup + .studentGroup .studentGrid::before {
+  display: none;
+}
+
+/*
+ * Row rule: fixed 256px cards with a 48px gap, so a row holds 4 cards on desktop (1280px content),
+ * 3 at about 1100px, 2 on tablets and 1 on phones. The 5th student starts a new row; nothing to
+ * set when adding members.
+ */
 .studentGrid {
   position: relative;
   isolation: isolate;

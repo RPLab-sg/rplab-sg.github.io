@@ -1,0 +1,52 @@
+/* M3-style page control: standard icon buttons for steps, 40px circular page targets. */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-10);
+}
+.pages {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.step,
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-full);
+  background: none;
+  color: var(--md-sys-color-on-surface-variant);
+  font: inherit;
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-standard);
+}
+.step:hover:not(:disabled),
+.page:hover:not(.current) {
+  background: rgb(68 70 79 / 8%);
+  color: var(--md-sys-color-on-surface);
+}
+.step:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+.current {
+  background: var(--md-sys-color-primary-fixed);
+  color: var(--md-sys-color-on-primary-fixed-variant);
+  cursor: default;
+}
+.gap {
+  width: 24px;
+  text-align: center;
+  color: var(--md-sys-color-on-surface-variant);
+}

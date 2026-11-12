@@ -1,4 +1,4 @@
-import type { NewsCategory, OutputType } from '@/content/types';
+import type { MemberRole, NewsCategory, OutputType } from '@/content/types';
 import type { Localized } from '@/i18n/locale';
 
 export const newsCategoryLabels: Record<NewsCategory, Localized> = {
@@ -16,3 +16,12 @@ export const outputTypeLabels: Record<OutputType, Localized> = {
 };
 
 export const outputFilterOrder: OutputType[] = ['tech-transfer', 'collaboration', 'paper'];
+
+/** Student groups on the People page, in display order. A group with no students is not shown. */
+export const studentRoleOrder = ['phd', 'ms', 'undergraduate'] as const satisfies MemberRole[];
+
+export const studentRoleLabels: Record<(typeof studentRoleOrder)[number], Localized> = {
+  phd: { ko: '박사과정', en: 'Ph.D. Students' },
+  ms: { ko: '석사과정', en: 'M.S. Students' },
+  undergraduate: { ko: '학부연구생', en: 'Undergraduate Researchers' },
+};

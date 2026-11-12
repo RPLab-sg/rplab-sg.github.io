@@ -1,0 +1,18 @@
+{
+  "slug": "test-news-09",
+  "status": "published",
+  "publishedAt": "2026-09-10",
+  "category": "research",
+  "title": {
+    "ko": "테스트 소식 09",
+    "en": "Test News 09"
+  },
+  "summary": {
+    "ko": "페이지네이션 확인용 임시 소식입니다.",
+    "en": "Temporary news item for pagination testing."
+  },
+  "body": {
+    "ko": [],
+    "en": []
+  }
+}

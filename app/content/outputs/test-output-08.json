@@ -1,0 +1,27 @@
+{
+  "slug": "test-output-08",
+  "status": "published",
+  "type": "tech-transfer",
+  "year": 2023,
+  "title": {
+    "ko": "테스트 성과 08",
+    "en": "Test Output 08"
+  },
+  "subtitle": {
+    "ko": "페이지네이션 확인용 임시 데이터",
+    "en": "Temporary data for pagination testing"
+  },
+  "tag": {
+    "ko": "테스트",
+    "en": "Test"
+  },
+  "shortTag": {
+    "ko": "Test",
+    "en": "Test"
+  },
+  "description": {
+    "ko": "페이지네이션과 스크롤 확인을 위한 테스트 성과 08입니다.",
+    "en": "Test output 08 for checking pagination and scrolling."
+  },
+  "featured": false
+}

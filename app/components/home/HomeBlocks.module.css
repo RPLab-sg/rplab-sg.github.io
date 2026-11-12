@@ -60,13 +60,65 @@
 }
 
 .projects {
+  --project-gap: var(--space-8);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-8);
+  grid-auto-flow: column;
+  /* Two cards per view at the original width and gap; any more continue off to the right. */
+  grid-auto-columns: calc((100% - var(--project-gap)) / 2);
+  gap: var(--project-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Room for the image shadow, which the scroll box would otherwise clip. */
+  padding-block: var(--space-2) var(--space-6);
+  margin-block: calc(var(--space-2) * -1) calc(var(--space-6) * -1);
+  /*
+   * Bleed a little into both page margins so neighbouring cards peek in as a hint to swipe
+   * (left only once scrolled). Equal padding keeps the cards at half the content column,
+   * and scroll-padding snaps them to the column edge, not the bleed.
+   */
+  --peek: min(64px, var(--page-gutter));
+  margin-inline: calc(var(--peek) * -1);
+  padding-inline: var(--peek);
+  scroll-padding-inline: var(--peek);
+}
+.projects::-webkit-scrollbar {
+  display: none;
 }
 .project {
   display: flex;
   flex-direction: column;
+  scroll-snap-align: start;
+}
+
+.projectNav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+  margin-top: calc(var(--space-2) * -1);
+}
+.projectStep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-full);
+  background: none;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-standard);
+}
+.projectStep:hover:not(:disabled) {
+  background: rgb(68 70 79 / 8%);
+  color: var(--md-sys-color-on-surface);
+}
+.projectStep:disabled {
+  opacity: 0.38;
+  cursor: default;
 }
 .projectImage {
   width: 100%;
@@ -333,8 +385,13 @@
 }
 
 @media (max-width: 900px) {
+  /* One card per view with the next one peeking in, so a swipe is the obvious move. */
   .projects {
-    grid-template-columns: 1fr;
+    grid-auto-columns: 85%;
+    gap: var(--space-4);
+  }
+  .projectNav {
+    display: none;
   }
   .axes {
     grid-template-columns: 1fr;

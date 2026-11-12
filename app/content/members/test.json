@@ -1,15 +1,10 @@
 {
-  "id": "test",
   "slug": "test",
   "role": "ms",
   "order": 10,
   "status": "published",
   "name": {
     "ko": "test",
-    "en": "test"
-  },
-  "position": {
-    "ko": "tset",
     "en": "test"
   },
   "education": {

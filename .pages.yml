@@ -1,6 +1,7 @@
 # Pages CMS (https://pagescms.org): web editor for members, news and outputs.
-# Each entry is one JSON file. Saving in the CMS commits to the repo, and the deploy workflow publishes it.
-# `npm run check` validates these files (scripts/validate-content.ts) — keep fields in step with app/content/types.ts.
+# Each entry is one JSON file named after its slug. Saving commits to the repo.
+# `npm run check` validates these files (app/content/schema.ts); keep fields in step with it.
+# Derived in code, so not asked here: each entry's id (= slug) and a member's position (from role).
 
 # Reusable field groups (YAML anchors).
 x-localized-line: &localized-line
@@ -12,20 +13,22 @@ x-localized-text: &localized-text
 # Required text: Korean must be filled; empty English falls back to Korean on the English site.
 x-required-line: &required-line
   - { name: ko, label: 한국어 (필수), type: string, required: true }
-  - { name: en, label: English (비우면 한국어 표시), type: string }
+  - { name: en, label: English (비우면 한국어로 표시), type: string }
 x-required-text: &required-text
   - { name: ko, label: 한국어 (필수), type: text, required: true }
-  - { name: en, label: English (비우면 한국어 표시), type: text }
+  - { name: en, label: English (비우면 한국어로 표시), type: text }
 x-localized-list: &localized-list
   - { name: ko, label: 한국어, type: string, list: true }
   - { name: en, label: English, type: string, list: true }
 x-localized-paragraphs: &localized-paragraphs
   - { name: ko, label: 한국어 (문단마다 한 칸), type: text, list: true }
-  - { name: en, label: English (one per paragraph), type: text, list: true }
+  - { name: en, label: English (문단마다 한 칸), type: text, list: true }
 x-image: &image
-  - { name: src, label: '이미지 (파일 이름은 영문·숫자·하이픈만, 예 radar-demo.jpg)', type: image }
+  - name: src
+    label: 이미지 파일 (파일 이름은 영문 소문자, 숫자, 하이픈만 / 예 radar-demo.jpg)
+    type: image
   - name: alt
-    label: 대체 텍스트 (이미지 설명)
+    label: 이미지 설명 (화면 낭독기용)
     type: object
     fields: *localized-line
 x-timeline: &timeline
@@ -34,27 +37,17 @@ x-timeline: &timeline
   - { name: note, label: 비고 (선택), type: object, fields: *localized-text }
 x-status: &status
   name: status
-  label: 공개 상태
+  label: 공개 여부
   type: select
   default: published
   required: true
   options:
     values:
       - { value: published, label: 공개 }
-      - { value: draft, label: 비공개 (초안) }
-x-id: &id
-  name: id
-  label: ID (주소 이름과 같게)
-  type: string
-  required: true
-x-slug: &slug
-  name: slug
-  label: 주소 이름 (영문 소문자·숫자·하이픈, 예 jinho-son)
-  type: string
-  required: true
-  pattern:
-    regex: '^[a-z0-9]+(-[a-z0-9]+)*$'
-    message: 영문 소문자, 숫자, 하이픈(-)만 쓸 수 있습니다.
+      - { value: draft, label: 비공개 (임시 저장) }
+x-slug-pattern: &slug-pattern
+  regex: '^[a-z0-9]+(-[a-z0-9]+)*$'
+  message: 영문 소문자, 숫자, 하이픈(-)만 쓸 수 있습니다.
 
 media:
   input: public/images
@@ -73,10 +66,13 @@ content:
       sort: [order]
       default: { sort: order, order: asc }
     fields:
-      - *id
-      - *slug
+      - name: slug
+        label: 영문 이름 (프로필 주소와 파일 이름에 쓰임 / 예 gildong-hong)
+        type: string
+        required: true
+        pattern: *slug-pattern
       - name: role
-        label: 구분
+        label: 구분 (직위와 과정은 구분에 맞춰 자동 표시)
         type: select
         required: true
         options:
@@ -84,36 +80,35 @@ content:
             - { value: professor, label: 교수 }
             - { value: phd, label: 박사과정 }
             - { value: ms, label: 석사과정 }
-            - { value: undergraduate, label: 학부 연구생 }
+            - { value: undergraduate, label: 학부연구생 }
             - { value: alumni, label: 졸업생 (목록에 표시 안 함) }
-      - { name: order, label: 표시 순서 (작을수록 앞), type: number, required: true, default: 10 }
-      - *status
       - { name: name, label: 이름, type: object, required: true, fields: *required-line }
-      - { name: position, label: 직위·과정, type: object, required: true, fields: *required-line }
+      - { name: order, label: 같은 구분 안에서 표시 순서 (작을수록 앞), type: number, default: 10 }
+      - *status
       - { name: education, label: 소속 학과 (선택), type: object, fields: *localized-line }
       - { name: photo, label: 사진 (선택), type: object, fields: *image }
       - name: contactSlots
-        label: 학생 카드 아이콘 링크 (비워 두면 아이콘만 표시)
+        label: 학생 카드 연락처 (비우면 아이콘만 표시)
         type: object
         fields:
-          - { name: github, label: GitHub 주소, type: string }
+          - { name: github, label: GitHub 주소 (https://github.com/아이디), type: string }
           - { name: email, label: 이메일, type: string }
-      - { name: summary, label: 교수 소개 요약 (교수만), type: object, fields: *localized-text }
-      - { name: keywords, label: 연구 키워드 (교수만), type: object, fields: *localized-list }
-      - { name: email, label: 이메일 (교수만), type: string }
-      - { name: phone, label: 전화 (교수만), type: string }
-      - { name: office, label: 연구실 위치 (교수만), type: object, fields: *localized-line }
+      - { name: summary, label: '[교수] 소개 요약', type: object, fields: *localized-text }
+      - { name: keywords, label: '[교수] 연구 키워드', type: object, fields: *localized-list }
+      - { name: email, label: '[교수] 이메일', type: string }
+      - { name: phone, label: '[교수] 전화', type: string }
+      - { name: office, label: '[교수] 연구실 위치', type: object, fields: *localized-line }
       - name: links
-        label: 링크 버튼 (교수만)
+        label: '[교수] 링크 버튼'
         type: object
         list: true
         fields:
-          - { name: kind, label: 종류 (아이콘 이름), type: string }
+          - { name: kind, label: 아이콘 종류, type: string }
           - { name: label, label: 버튼 글자, type: object, required: true, fields: *required-line }
-          - { name: href, label: 주소 (비우면 비활성), type: string }
-          - { name: external, label: 외부 사이트, type: boolean, default: true }
+          - { name: href, label: 링크 주소 (비우면 비활성 표시), type: string }
+          - { name: external, label: 새 사이트로 이동, type: boolean, default: true }
       - name: detail
-        label: 전체 이력 페이지 (교수만, 비우면 페이지 없음)
+        label: '[교수] 전체 이력 페이지 (비우면 페이지 없음)'
         type: object
         fields:
           - { name: summary, label: 소개, type: object, required: true, fields: *required-text }
@@ -140,11 +135,13 @@ content:
       fields: [slug, publishedAt, category, status]
       default: { sort: publishedAt, order: desc }
     fields:
-      - *id
-      - *slug
-      - *status
+      - name: slug
+        label: 소식 영문 ID (파일 이름에 쓰임 / 예 2026-radai-grand-prize)
+        type: string
+        required: true
+        pattern: *slug-pattern
       - name: publishedAt
-        label: 날짜 (YYYY-MM-DD, 날짜를 모르면 YYYY)
+        label: 날짜 (2026-03-26 형식, 날짜를 모르면 연도만 2026)
         type: string
         required: true
         pattern:
@@ -160,10 +157,11 @@ content:
             - { value: research, label: 연구 }
             - { value: event, label: 행사 }
             - { value: notice, label: 공지 }
+      - *status
       - { name: title, label: 제목, type: object, required: true, fields: *required-line }
-      - { name: detail, label: 부제 (예 상 이름, 선택), type: object, fields: *localized-line }
+      - { name: detail, label: 부제 (예 상 이름 / 선택), type: object, fields: *localized-line }
       - { name: summary, label: 요약, type: object, required: true, fields: *required-text }
-      - { name: body, label: 본문, type: object, fields: *localized-paragraphs }
+      - { name: body, label: 본문 (선택), type: object, fields: *localized-paragraphs }
       - { name: cover, label: 대표 이미지 (선택), type: object, fields: *image }
 
   - name: outputs
@@ -177,38 +175,39 @@ content:
       fields: [slug, type, year, featured, status]
       default: { sort: year, order: desc }
     fields:
-      - *id
-      - *slug
-      - *status
+      - name: slug
+        label: 성과 영문 ID (파일 이름에 쓰임 / 예 fsta-edu-sdk)
+        type: string
+        required: true
+        pattern: *slug-pattern
       - name: type
         label: 분류
         type: select
         required: true
         options:
           values:
-            - { value: tech-transfer, label: 기술이전 }
+            - { value: tech-transfer, label: 기술이전 및 특허 }
             - { value: collaboration, label: 산학협력 }
             - { value: paper, label: 논문 }
             - { value: project, label: 프로젝트 }
       - { name: year, label: 연도 (선택), type: number }
+      - *status
       - { name: title, label: 제목, type: object, required: true, fields: *required-line }
       - { name: subtitle, label: 부제, type: object, required: true, fields: *required-line }
-      - {
-          name: tag,
-          label: 태그 (성과 페이지),
-          type: object,
-          required: true,
-          fields: *required-line,
-        }
-      - {
-          name: shortTag,
-          label: 짧은 태그 (홈 카드),
-          type: object,
-          required: true,
-          fields: *required-line,
-        }
+      - name: tag
+        label: 태그 (성과 페이지에 표시)
+        type: object
+        required: true
+        fields: *required-line
+      - name: shortTag
+        label: 짧은 태그 (홈 카드에 표시)
+        type: object
+        required: true
+        fields: *required-line
       - { name: description, label: 설명, type: object, required: true, fields: *required-text }
-      - { name: featured, label: 홈 Featured Projects에 표시, type: boolean, default: false }
-      - { name: featuredOrder, label: 홈 표시 순서 (작을수록 앞, 선택), type: number }
       - { name: image, label: 이미지 (선택), type: object, fields: *image }
       - { name: href, label: 외부 링크 (선택), type: string }
+      - { name: featured, label: 홈 Featured Projects에 표시, type: boolean, default: false }
+      - name: featuredOrder
+        label: 홈 Featured 표시 순서 (작을수록 앞 / 선택)
+        type: number

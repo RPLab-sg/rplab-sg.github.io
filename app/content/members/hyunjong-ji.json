@@ -1,5 +1,4 @@
 {
-  "id": "hyunjong-ji",
   "slug": "hyunjong-ji",
   "role": "undergraduate",
   "order": 10,
@@ -7,10 +6,6 @@
   "name": {
     "ko": "지현종",
     "en": "Hyunjong Ji"
-  },
-  "position": {
-    "ko": "학부연구생",
-    "en": "Undergraduate Researcher"
   },
   "education": {
     "ko": "서강대학교 컴퓨터공학과 학사과정",

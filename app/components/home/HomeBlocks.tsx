@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useRef, type CSSProperties } from 'react';
 import type { NewsItem, Output, ResearchAxis } from '@/content/types';
 import { CopiedNote, useCopyEmail } from '@/components/ui/EmailCopy';
 import { Icon, type IconName } from '@/components/ui/Icon';
@@ -9,6 +9,7 @@ import { site } from '@/config/site';
 import { pick, type Locale } from '@/i18n/locale';
 import { newsCategoryLabels } from '@/lib/labels';
 import { ui } from '@/i18n/ui';
+import { useScrollEdges } from '@/lib/useScrollEdges';
 import { HomeSection } from './HomeSection';
 import styles from './HomeBlocks.module.css';
 
@@ -49,10 +50,31 @@ export function ResearchAreas({ axes, locale }: { axes: ResearchAxis[]; locale: 
   );
 }
 
+/** Cards keep the two-column width and gap; a third and later card scroll in sideways. */
 export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; locale: Locale }) {
+  const track = useRef<HTMLUListElement>(null);
+  const { canBack, canForward } = useScrollEdges(track, 'x');
+
+  const step = (direction: 1 | -1) => {
+    const el = track.current;
+    const card = el?.firstElementChild as HTMLElement | null;
+    if (!el || !card) return;
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+    const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollBy({
+      left: direction * (card.offsetWidth + gap),
+      behavior: smooth ? 'smooth' : 'auto',
+    });
+  };
+
   return (
     <HomeSection id="featured-projects" title={ui('featuredProjects', locale)}>
-      <ul className={styles.projects} data-reveal-children>
+      <ul
+        ref={track}
+        className={styles.projects}
+        tabIndex={0}
+        aria-label={ui('projectList', locale)}
+      >
         {outputs.map((o) => (
           <li key={o.id} className={styles.project}>
             {o.image && (
@@ -72,6 +94,29 @@ export function FeaturedProjects({ outputs, locale }: { outputs: Output[]; local
           </li>
         ))}
       </ul>
+      {/* Desktop arrows only when there is more than one screen of cards; touch users swipe. */}
+      {outputs.length > 2 && (
+        <div className={styles.projectNav}>
+          <button
+            type="button"
+            className={styles.projectStep}
+            onClick={() => step(-1)}
+            disabled={!canBack}
+            aria-label={ui('previousSlide', locale)}
+          >
+            <Icon name="chevronLeft" size={24} />
+          </button>
+          <button
+            type="button"
+            className={styles.projectStep}
+            onClick={() => step(1)}
+            disabled={!canForward}
+            aria-label={ui('nextSlide', locale)}
+          >
+            <Icon name="chevronRight" size={24} />
+          </button>
+        </div>
+      )}
       <p className={styles.moreLink}>
         <LocalizedLink to="/outputs">{ui('viewAllOutputs', locale)}</LocalizedLink>
       </p>
