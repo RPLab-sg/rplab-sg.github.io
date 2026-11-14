@@ -1,0 +1,15 @@
+{
+  "slug": "junyoung-hong",
+  "role": "undergraduate",
+  "status": "published",
+  "name": {
+    "ko": "홍준영",
+    "en": "Junyoung Hong"
+  },
+  "school": "sogang",
+  "education": "computer-science-engineering",
+  "contactSlots": {
+    "github": "https://github.com/xitges",
+    "email": "xitges44@gmail.com"
+  }
+}

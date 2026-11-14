@@ -11,11 +11,21 @@ export const newsCategoryLabels: Record<NewsCategory, Localized> = {
 export const outputTypeLabels: Record<OutputType, Localized> = {
   'tech-transfer': { ko: '기술이전·특허', en: 'Tech Transfer & Patents' },
   collaboration: { ko: '산학 협력', en: 'Industry Collaboration' },
-  paper: { ko: '논문', en: 'Papers' },
+  startup: { ko: '창업지원', en: 'Startup Support' },
+  paper: { ko: '논문지도', en: 'Paper Advising' },
   project: { ko: '프로젝트', en: 'Projects' },
 };
 
-export const outputFilterOrder: OutputType[] = ['tech-transfer', 'collaboration', 'paper'];
+export const outputTabLabels: Partial<Record<OutputType, Localized>> = {
+  paper: { ko: '논문', en: 'Papers' },
+};
+
+export const outputFilterOrder: OutputType[] = [
+  'tech-transfer',
+  'collaboration',
+  'startup',
+  'paper',
+];
 
 export const studentRoleOrder = ['phd', 'ms', 'undergraduate'] as const satisfies MemberRole[];
 

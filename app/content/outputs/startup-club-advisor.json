@@ -1,0 +1,23 @@
+{
+  "slug": "startup-club-advisor",
+  "status": "published",
+  "type": "startup",
+  "title": {
+    "ko": "서강대학교 정규 창업동아리 지도교수",
+    "en": "Faculty Advisor, Official Startup Club, Sogang University"
+  },
+  "tag": {
+    "ko": "창업지원",
+    "en": "Startup Support"
+  },
+  "shortTag": {
+    "ko": "Startup Support",
+    "en": "Startup Support"
+  },
+  "description": {
+    "ko": "정규 창업동아리의 지도교수로서 동아리 활동과 창업 준비 과정을 지도합니다.",
+    "en": "Advises an official student startup club through its activities and startup preparation."
+  },
+  "featured": false,
+  "year": 2026
+}

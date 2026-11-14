@@ -8,7 +8,7 @@ import type { OutputType } from '@/content/types';
 import { pick } from '@/i18n/locale';
 import { ui } from '@/i18n/ui';
 import { getOutputs } from '@/lib/content';
-import { outputFilterOrder, outputTypeLabels } from '@/lib/labels';
+import { outputFilterOrder, outputTabLabels, outputTypeLabels } from '@/lib/labels';
 import { staticMeta, withLocale, type LoaderArgs } from '@/lib/route';
 import { usePagination } from '@/lib/usePagination';
 import styles from './outputs.module.css';
@@ -89,7 +89,9 @@ export default function OutputsPage() {
               className={filter === key ? `${tabs.tab} ${tabs.active}` : tabs.tab}
               onClick={() => setFilter(key)}
             >
-              {key === 'all' ? ui('filterAll', locale) : pick(outputTypeLabels[key], locale)}
+              {key === 'all'
+                ? ui('filterAll', locale)
+                : pick(outputTabLabels[key] ?? outputTypeLabels[key], locale)}
             </button>
           ))}
         </div>
@@ -101,10 +103,9 @@ export default function OutputsPage() {
                 <span className={styles.type}>{pick(outputTypeLabels[o.type], locale)}</span>
                 <span className={styles.rowText}>
                   <span className={styles.rowTitle}>{pick(o.title, locale)}</span>
-                  <span className={styles.rowSub}>{pick(o.subtitle, locale)}</span>
-                </span>
-                <span className={styles.arrow} aria-hidden="true">
-                  →
+                  {o.subtitle && pick(o.subtitle, locale) && (
+                    <span className={styles.rowSub}>{pick(o.subtitle, locale)}</span>
+                  )}
                 </span>
               </li>
             ))}

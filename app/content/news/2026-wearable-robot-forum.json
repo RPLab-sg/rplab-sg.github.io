@@ -1,0 +1,30 @@
+{
+  "slug": "2026-wearable-robot-forum",
+  "status": "published",
+  "publishedAt": "2026-10-08",
+  "category": "event",
+  "title": {
+    "ko": "군포시 제1회 대한민국 웨어러블 로봇 혁신포럼 전문가 강연",
+    "en": "Prof. Jinho Son gives an expert talk at the 1st Korea Wearable Robot Innovation Forum"
+  },
+  "detail": {
+    "ko": "재활과 보행 등 웨어러블 로봇의 의료현장 활용",
+    "en": "Wearable robots in clinical settings, from rehabilitation to gait assistance"
+  },
+  "summary": {
+    "ko": "손진호 교수가 군포시청에서 열린 제1회 대한민국(군포) 웨어러블 로봇 혁신포럼에서 '재활·보행 등 웨어러블 로봇의 의료현장 활용'을 주제로 전문가 강연을 했습니다.",
+    "en": "Prof. Jinho Son gave an expert talk on the clinical use of wearable robots for rehabilitation and gait assistance at the 1st Korea (Gunpo) Wearable Robot Innovation Forum, held at Gunpo City Hall."
+  },
+  "body": {
+    "ko": [],
+    "en": []
+  },
+  "cover": {
+    "src": "/images/news/2026-wearable-robot-forum.jpg",
+    "alt": {
+      "ko": "제1회 대한민국 웨어러블 로봇 혁신포럼 참석자 단체 사진",
+      "en": "Group photo of participants at the 1st Korea Wearable Robot Innovation Forum"
+    }
+  },
+  "href": "https://www.m-i.kr/news/articleView.html?idxno=2005624"
+}

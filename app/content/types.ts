@@ -84,7 +84,7 @@ export interface NewsItem {
   href?: string;
 }
 
-export type OutputType = 'tech-transfer' | 'collaboration' | 'paper' | 'project';
+export type OutputType = 'tech-transfer' | 'collaboration' | 'startup' | 'paper' | 'project';
 
 export interface Output {
   id: string;
@@ -93,7 +93,7 @@ export interface Output {
   type: OutputType;
   year?: number;
   title: Localized;
-  subtitle: Localized;
+  subtitle?: Localized;
   tag: Localized;
   shortTag: Localized;
   description: Localized;

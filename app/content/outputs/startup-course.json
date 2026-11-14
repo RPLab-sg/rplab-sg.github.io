@@ -1,0 +1,23 @@
+{
+  "slug": "startup-course",
+  "status": "published",
+  "type": "startup",
+  "title": {
+    "ko": "서강대학교 정규교과목 개설",
+    "en": "Regular Course Development, Sogang University"
+  },
+  "tag": {
+    "ko": "창업지원",
+    "en": "Startup Support"
+  },
+  "shortTag": {
+    "ko": "Startup Support",
+    "en": "Startup Support"
+  },
+  "description": {
+    "ko": "학생들이 창업을 체계적으로 배울 수 있도록 창업 관련 정규 교과목을 개설해 운영합니다.",
+    "en": "Opened and runs a regular for-credit course so students can learn entrepreneurship systematically."
+  },
+  "featured": false,
+  "year": 2026
+}

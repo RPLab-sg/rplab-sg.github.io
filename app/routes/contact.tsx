@@ -14,8 +14,8 @@ const inquiries: { title: Localized; subtitle: string; body: Localized }[] = [
     title: { ko: '연구실 참여', en: 'Join the Lab' },
     subtitle: 'Join the lab',
     body: {
-      ko: '로봇, 센서, 융합 설계에 관심 있는 대학원생과 학부 연구생을 기다립니다.\n 간단한 자기소개와 관심 연구 분야를 이메일로 보내 주세요.',
-      en: 'We welcome graduate students and undergraduate researchers interested in robotics, sensors and integrated design. Send us a short introduction and your research interests by email.',
+      ko: '로봇, 센서, 융합 설계에 관심 있는 학부 연구생을 기다립니다.\n 간단한 자기소개와 관심 연구 분야를 이메일로 보내 주세요.',
+      en: 'We welcome undergraduate researchers interested in robotics, sensors and integrated design. Send us a short introduction and your research interests by email.',
     },
   },
   {

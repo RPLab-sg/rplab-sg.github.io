@@ -265,7 +265,8 @@ content:
           values:
             - { value: tech-transfer, label: 기술이전 및 특허 }
             - { value: collaboration, label: 산학협력 }
-            - { value: paper, label: 논문 }
+            - { value: startup, label: 창업지원 }
+            - { value: paper, label: 논문지도 }
             - { value: project, label: 프로젝트 }
       - name: year
         label: 연도
@@ -273,7 +274,7 @@ content:
         options: { min: 1990, max: 2100 }
       - *status
       - { name: title, label: 제목, type: object, required: true, fields: *required-line }
-      - { name: subtitle, label: 부제, type: object, required: true, fields: *required-line }
+      - { name: subtitle, label: 부제, type: object, fields: *localized-line }
       - name: tag
         label: 태그
         type: object

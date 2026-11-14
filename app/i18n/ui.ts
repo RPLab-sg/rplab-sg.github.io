@@ -17,8 +17,8 @@ const strings = {
   researchDetail: { ko: '연구 자세히 보기 →', en: 'See in detail →' },
   joinTitle: { ko: 'Join RPLab', en: 'Join RPLab' },
   joinBody: {
-    ko: '로봇, 센서, 융합 설계에 관심 있는\n대학원생과 학부 연구생을 기다립니다.',
-    en: 'We welcome graduate and undergraduate researchers\ninterested in robots, sensors and integrated design.',
+    ko: '로봇, 센서, 융합 설계에 관심 있는 학부 연구생을 기다립니다.\n 간단한 자기소개와 관심 연구 분야를 이메일로 보내 주세요.',
+    en: 'We welcome undergraduate researchers\ninterested in robots, sensors and integrated design.',
   },
   getInTouch: { ko: '문의하기', en: 'Get in Touch' },
   copyEmail: { ko: '이메일 주소 복사', en: 'Copy email address' },
