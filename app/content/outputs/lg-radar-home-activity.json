@@ -1,0 +1,27 @@
+{
+  "slug": "lg-radar-home-activity",
+  "status": "published",
+  "type": "collaboration",
+  "year": 2026,
+  "title": {
+    "ko": "LG전자 산학 프로젝트 · 홈 환경 사용자 행동 인식을 위한 레이더 시뮬레이션 데이터 파이프라인",
+    "en": "LG Electronics Industry Project: Radar Simulation Data Pipeline for Home Activity Recognition"
+  },
+  "subtitle": {
+    "ko": "LG전자 인공지능연구소 산학 프로젝트",
+    "en": "Industry project with LG Electronics AI Lab (Mar to Aug 2026)"
+  },
+  "tag": {
+    "ko": "레이더 센싱 및 산학 협력",
+    "en": "Radar Sensing and Industry Collaboration"
+  },
+  "shortTag": {
+    "ko": "Radar, Industry",
+    "en": "Radar, Industry"
+  },
+  "description": {
+    "ko": "홈 환경에서 카메라를 대신해 레이더로 사용자 행동을 인식하기 위한 데이터 파이프라인을 연구합니다. 가족과 반려동물 구성을 고려한 사용자 행동을 정의하고, 이를 텍스트에서 2D/3D 모션으로, 다시 레이더 데이터(포인트 클라우드, 도플러)로 변환하는 시뮬레이션 데이터 파이프라인을 구축합니다.",
+    "en": "We study a data pipeline for recognizing user activity at home with radar instead of cameras. The project defines user activities that reflect real households, including family members and pets, and builds a simulation data pipeline that turns them from text into 2D/3D motion and then into radar data such as point clouds and Doppler signals."
+  },
+  "featured": false
+}
