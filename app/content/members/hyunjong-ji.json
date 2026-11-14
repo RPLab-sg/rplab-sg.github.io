@@ -9,6 +9,7 @@
   "school": "sogang",
   "education": "computer-science-engineering",
   "contactSlots": {
-    "github": "https://github.com/dandevlog0206"
+    "github": "https://github.com/dandevlog0206",
+    "email": null
   }
 }

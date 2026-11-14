@@ -1,0 +1,23 @@
+{
+  "slug": "startup-mentoring",
+  "status": "published",
+  "type": "startup",
+  "title": {
+    "ko": "서강대학교 창업상시멘토링 창업상담전문교수",
+    "en": "Startup Counseling Professor, Ongoing Mentoring, Sogang University"
+  },
+  "tag": {
+    "ko": "창업지원",
+    "en": "Startup Support"
+  },
+  "shortTag": {
+    "ko": "Startup Support",
+    "en": "Startup Support"
+  },
+  "description": {
+    "ko": "창업상담전문교수로서 창업을 준비하는 학생과 구성원에게 상시 멘토링과 상담을 제공합니다.",
+    "en": "As a startup counseling professor, provides ongoing mentoring and counseling to students and members preparing to start a business."
+  },
+  "featured": false,
+  "year": 2026
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "figur-icaiic-2026",
+  "status": "published",
+  "type": "paper",
+  "year": 2026,
+  "title": {
+    "ko": "FIGUR: An AI-Driven Collaborative Robotic System for Expressive Portrait Generation",
+    "en": "FIGUR: An AI-Driven Collaborative Robotic System for Expressive Portrait Generation"
+  },
+  "subtitle": {
+    "ko": "Hojeong Kim, Jinho Son / ICAIIC 2026",
+    "en": "Hojeong Kim and Jinho Son / ICAIIC 2026"
+  },
+  "tag": {
+    "ko": "논문지도",
+    "en": "Paper Advising"
+  },
+  "shortTag": {
+    "ko": "Paper Advising",
+    "en": "Paper Advising"
+  },
+  "description": {
+    "ko": "2026 International Conference on Artificial Intelligence in Information and Communication(ICAIIC)에서 발표한 논문으로, 표현력 있는 초상화를 그리는 AI 기반 협업 로봇 시스템 FIGUR를 다룹니다.",
+    "en": "Presented at the 2026 International Conference on Artificial Intelligence in Information and Communication (ICAIIC), this paper introduces FIGUR, an AI-driven collaborative robotic system for expressive portrait generation."
+  },
+  "featured": false
+}

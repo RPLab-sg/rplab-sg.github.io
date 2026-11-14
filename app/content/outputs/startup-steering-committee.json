@@ -1,0 +1,23 @@
+{
+  "slug": "startup-steering-committee",
+  "status": "published",
+  "type": "startup",
+  "title": {
+    "ko": "서강대학교 운영위원회",
+    "en": "Steering Committee, Sogang University"
+  },
+  "tag": {
+    "ko": "창업지원",
+    "en": "Startup Support"
+  },
+  "shortTag": {
+    "ko": "Startup Support",
+    "en": "Startup Support"
+  },
+  "description": {
+    "ko": "창업지원 운영위원회 위원으로 참여해 창업지원 프로그램의 방향과 운영을 함께 논의합니다.",
+    "en": "Serves on the startup support steering committee, helping shape the direction and operation of startup support programs."
+  },
+  "featured": false,
+  "year": 2026
+}

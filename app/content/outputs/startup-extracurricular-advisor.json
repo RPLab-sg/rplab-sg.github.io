@@ -1,0 +1,23 @@
+{
+  "slug": "startup-extracurricular-advisor",
+  "status": "published",
+  "type": "startup",
+  "title": {
+    "ko": "서강대학교 비교과 프로그램 지도교수",
+    "en": "Faculty Advisor, Extracurricular Programs, Sogang University"
+  },
+  "tag": {
+    "ko": "창업지원",
+    "en": "Startup Support"
+  },
+  "shortTag": {
+    "ko": "Startup Support",
+    "en": "Startup Support"
+  },
+  "description": {
+    "ko": "창업 비교과 프로그램의 지도교수로 참여해 학생들의 창업 아이디어 발굴과 실행을 돕습니다.",
+    "en": "Serves as faculty advisor for extracurricular startup programs, helping students find and develop startup ideas."
+  },
+  "featured": false,
+  "year": 2026
+}
