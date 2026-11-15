@@ -42,6 +42,8 @@ const strings = {
   page: { ko: '페이지', en: 'Page' },
   previousPage: { ko: '이전 페이지', en: 'Previous page' },
   nextPage: { ko: '다음 페이지', en: 'Next page' },
+  photoGallery: { ko: '사진', en: 'Photos' },
+  photoN: { ko: '{n}번째 사진', en: 'Photo {n}' },
   readMore: { ko: '자세히 보기 →', en: 'Read more →' },
   filterAll: { ko: '전체', en: 'All' },
   noOutputs: { ko: '아직 등록된 항목이 없습니다.', en: 'Nothing listed here yet.' },

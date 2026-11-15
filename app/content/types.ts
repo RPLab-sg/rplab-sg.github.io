@@ -15,6 +15,7 @@ export interface ResearchAxis {
   keywords: Localized<string[]>;
   body: Localized<string[]>;
   image?: ImageRef;
+  images?: ImageRef[];
 }
 
 export type MemberRole = 'professor' | 'phd' | 'ms' | 'undergraduate' | 'alumni';
