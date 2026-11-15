@@ -1,0 +1,71 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.track {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: var(--shape-xs);
+  background: var(--md-sys-color-surface-container-low);
+  cursor: grab;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.track[data-dragging] {
+  scroll-snap-type: none;
+  cursor: grabbing;
+}
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  user-select: none;
+}
+.dots {
+  display: flex;
+  gap: var(--space-1);
+}
+.dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: var(--shape-full);
+  background: var(--md-sys-color-outline-variant);
+  transition:
+    width 250ms var(--ease-standard),
+    background-color 250ms var(--ease-standard);
+}
+.dot:hover::before {
+  background: var(--md-sys-color-on-surface-variant);
+}
+.dot[aria-current]::before {
+  width: 20px;
+  background: var(--md-sys-color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot::before {
+    transition: none;
+  }
+}

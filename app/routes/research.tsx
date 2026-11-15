@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router';
 import { SubPage } from '@/components/layout/SubPage';
 import { ChipList } from '@/components/ui/Chip';
 import { Media } from '@/components/ui/Media';
+import { PhotoCarousel } from '@/components/ui/PhotoCarousel';
 import { pick } from '@/i18n/locale';
 import { ui } from '@/i18n/ui';
 import { getResearchAxes } from '@/lib/content';
@@ -81,7 +82,15 @@ export default function ResearchPage() {
                 {axis.title}
               </h2>
               <ChipList items={pick(axis.keywords, locale)} size="sm" />
-              <Media image={axis.image} locale={locale} className={styles.photo} />
+              {axis.images && axis.images.length > 1 ? (
+                <PhotoCarousel images={axis.images} locale={locale} className={styles.gallery} />
+              ) : (
+                <Media
+                  image={axis.images?.[0] ?? axis.image}
+                  locale={locale}
+                  className={styles.photo}
+                />
+              )}
               <div className={styles.body}>
                 {pick(axis.body, locale).map((p, i) => (
                   <p key={i}>{p}</p>

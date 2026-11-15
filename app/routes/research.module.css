@@ -92,6 +92,10 @@
   border-radius: var(--shape-xs);
   background: var(--md-sys-color-surface-container-low);
 }
+.gallery {
+  width: min(880px, 100%);
+  margin-block: var(--space-12);
+}
 .body {
   display: flex;
   flex-direction: column;
@@ -116,7 +120,8 @@
     font-size: 36px;
     line-height: 44px;
   }
-  .photo {
+  .photo,
+  .gallery {
     margin-block: var(--space-8);
   }
   .body {
