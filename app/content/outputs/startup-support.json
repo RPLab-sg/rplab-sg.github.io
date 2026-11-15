@@ -1,0 +1,27 @@
+{
+  "slug": "startup-support",
+  "status": "published",
+  "type": "startup",
+  "year": 2026,
+  "title": {
+    "ko": "서강대학교 창업동아리 지도교수 및 창업교과운영위원",
+    "en": "Startup Club Faculty Advisor and Entrepreneurship Curriculum Committee Member, Sogang University"
+  },
+  "subtitle": {
+    "ko": "서강대학교 스타트업지원센터",
+    "en": "Sogang University Startup Support Center"
+  },
+  "tag": {
+    "ko": "창업지원",
+    "en": "Startup Support"
+  },
+  "shortTag": {
+    "ko": "Startup Support",
+    "en": "Startup Support"
+  },
+  "description": {
+    "ko": "서강대학교 정규 창업동아리 지도교수이자 창업교과 운영위원으로서, 창업 교과목 운영과 비교과 프로그램, 상시 창업 멘토링을 통해 학생들의 창업을 지원합니다.",
+    "en": "As faculty advisor to an official startup club and a member of the entrepreneurship curriculum committee at Sogang University, supports student startups through entrepreneurship courses, extracurricular programs and ongoing mentoring."
+  },
+  "featured": false
+}
