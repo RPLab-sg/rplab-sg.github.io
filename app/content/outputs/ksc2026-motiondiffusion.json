@@ -1,0 +1,27 @@
+{
+  "slug": "ksc2026-motiondiffusion",
+  "type": "paper",
+  "year": 2015,
+  "status": "published",
+  "title": {
+    "ko": "홈 활동 인식 성능 향상을 위한 모션 디퓨전 기반 합성 mmWave 레이더 데이터 생성 연구",
+    "en": "Motion Diffusion-Based Synthetic mmWave Radar Data Generation for Improving Home Activity Recognition"
+  },
+  "subtitle": {
+    "ko": "Hojeong Kim , Jinho Son , Eugene Kim / KSC 2026",
+    "en": "Hojeong Kim, Jinho Son1, Eugene Kim / KSC 2026"
+  },
+  "tag": {
+    "ko": "논문지도",
+    "en": "Paper Advising"
+  },
+  "shortTag": {
+    "ko": "Paper Advising",
+    "en": "Paper Advising"
+  },
+  "description": {
+    "ko": "mmWave 레이더는 프라이버시 보호에 유리하지만, 실측 데이터 확보에 한계가 있다. 본 연구는 Kimodo 모션 디퓨전 모델로 현실적인 인체 활동을 생성하고, RFGenesis 물리 시뮬레이터를 활용해 고충실도 합성 mmWave 레이더 데이터를 생성하는 방법을 제안한다.",
+    "en": "mmWave radar enables privacy-preserving human activity recognition, but collecting real-world data is costly and challenging. This study proposes a method for generating high-fidelity synthetic mmWave radar data by producing realistic human motions using the Kimodo motion diffusion model and simulating radar signals with RFGenesis."
+  },
+  "featured": false
+}
